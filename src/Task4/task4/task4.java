@@ -7,6 +7,29 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class task4 {
+
+    public static long bench(int N, String str) {
+
+        Instant start = Instant.now();
+        for (int i = 0; i < N; i++) {
+            str += "*";
+        }
+        Instant finish = Instant.now();
+        return Duration.between(start, finish).toNanos();
+
+    }
+
+    public static long bench(int N, StringBuilder a) {
+
+        Instant start2 = Instant.now();
+        for (int i = 0; i < N; i++) {
+            a.append('*');
+        }
+        Instant finish2 = Instant.now();
+        return Duration.between(start2, finish2).toNanos();
+
+    }
+
     public static void main(String[] args) {
 
         String str = "";
@@ -14,19 +37,7 @@ public class task4 {
 
 
         int N = 100000;
-        Instant start = Instant.now();
-        for (int i = 0; i < N; i++) {
-            str += "*";
-        }
-        Instant finish = Instant.now();
-        long elapsed = Duration.between(start, finish).toNanos();
 
-        Instant start2 = Instant.now();
-        for (int i = 0; i < N; i++) {
-            sb.append('*');
-        }
-        Instant finish2 = Instant.now();
-        long elapsed2 = Duration.between(start2, finish2).toNanos();
-        System.out.println(elapsed + "ns - String star" + "\n" + elapsed2 + "ns - StringBuilderStar" + "\n" + "В " + elapsed / elapsed2 + " раза StringBuilder быстрее");
+        System.out.println(bench(N, str) + "ns - String star" + "\n" + bench(N, sb) + "ns - StringBuilderStar" + "\n" + "В " + bench(N, str) / bench(N, sb) + " раза StringBuilder быстрее");
     }
 }
