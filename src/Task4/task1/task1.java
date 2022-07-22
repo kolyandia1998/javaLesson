@@ -17,17 +17,17 @@ public class task1 {
         return word;
 
     }
-    public  static int symbolCount (String[] a)
-    {
+
+    public static int symbolCount(String[] a) {
         int symbol = 0;
-        for (int i = 0; i < a.length; i++){
+        for (int i = 0; i < a.length; i++) {
 
             symbol += a[i].length();
         }
-        return  symbol;
+        return symbol;
     }
 
-    public static int wordCount (String[] str) {
+    public static int wordCount(String[] str) {
         int wordCount = 0;
         for (int i = 0; i < str.length; i++) {
             Pattern pattern = Pattern.compile("[a-zA-Zа-яА-Я]", Pattern.CASE_INSENSITIVE);
@@ -37,7 +37,7 @@ public class task1 {
             }
 
         }
-         return wordCount;
+        return wordCount;
     }
 
     public static void main(String[] args) throws Exception {
