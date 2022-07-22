@@ -20,7 +20,7 @@ public class task4 {
             }
         }
     };
-   public static MyInterface sbInterface = new MyInterface() {
+    public static MyInterface sbInterface = new MyInterface() {
         @Override
         public void Bench(String input, int N) {
             StringBuilder sb = new StringBuilder(input);
@@ -46,13 +46,12 @@ public class task4 {
         int N = 1000000;
 
 
-
         long resStr = benchTest(strInterface, input, N);
         long resSb = benchTest(sbInterface, input, N);
 
 
         System.out.println("Результат String:  " + resStr);
         System.out.println("Результат StringBuilder:  " + resSb);
-        System.out.println(resStr/resSb);
+        System.out.println("SB быстрее Str в " + resStr / resSb + " раза");
     }
 }
