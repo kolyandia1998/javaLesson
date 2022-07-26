@@ -14,7 +14,7 @@ public class People {
     private LocalDate birthDay = LocalDate.of(1900, 1, 1);
 
 
-    public void setBirth_day(int year, int month, int dayOfMonth) throws Exception {
+    public void setBirthDay(int year, int month, int dayOfMonth) throws Exception {
         try {
             this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
         } catch (DateTimeException e) {
@@ -22,7 +22,7 @@ public class People {
         }
     }
 
-    public LocalDate getBirth_day() {
+    public LocalDate getBirthDay() {
         return birthDay;
     }
     private String reg = "^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$";
@@ -54,7 +54,7 @@ public class People {
         return surname;
     }
 
-    public void setMiddle_name(String middle_name) throws NameException {
+    public void setMiddleName(String middle_name) throws NameException {
 
         if (middle_name == null || !middle_name.matches(reg)) {
             throw new NameException("Фамилия должна состоять из букв");
@@ -62,7 +62,7 @@ public class People {
         this.middleName = middle_name;
     }
 
-    public String getMiddle_name() {
+    public String getMiddleName() {
         return middleName;
     }
 

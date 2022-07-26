@@ -13,7 +13,7 @@ public class task1 {
         System.out.println("Введите Фамилию");
         man.setSurname(bufferedReader.readLine());
         System.out.println("Введите отчество");
-        man.setMiddle_name(bufferedReader.readLine());
+        man.setMiddleName(bufferedReader.readLine());
         System.out.println("Введите дату рождения");
         System.out.println("Год");
         int year = Integer.parseInt(bufferedReader.readLine());
@@ -21,9 +21,9 @@ public class task1 {
         int month = Integer.parseInt(bufferedReader.readLine());
         System.out.println("День");
         int day = Integer.parseInt(bufferedReader.readLine());
-        man.setBirth_day(year, month, day);
+        man.setBirthDay(year, month, day);
 
-        System.out.println(man.getSurname() + " " + man.getName() + " " + man.getMiddle_name() + "\n" + man.getBirth_day() + "г.рождения" + "\n" + man.getAge() + " года");
+        System.out.println(man.getSurname() + " " + man.getName() + " " + man.getMiddleName() + "\n" + man.getBirthDay() + "г.рождения" + "\n" + man.getAge() + " года");
     }
 
 }
