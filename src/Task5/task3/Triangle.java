@@ -1,42 +1,53 @@
 package Task5.task3;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Triangle {
     private double A;
     private double B;
     private double C;
 
-    public void setA(double A) throws Exception {
-        if (A <= 0) {
-            throw new Exception("Сторона треугольника должны быть больше 0");
+
+    public static void printMessage(String message){
+        System.out.println(message);
+    }
+    public static Double tryParseDouble (String input ){
+        try {
+
+            return Double.parseDouble(input);
+        }
+        catch (NumberFormatException e)
+        {return  null;}
+
+    }
+
+
+
+
+
+    public  Triangle(double A,double B,double C) throws Exception {
+        if ( A <= 0 || B <=0 || C <= 0 || (A==B && B==C)) {
+            throw new Exception("Сторона треугольника должны быть больше 0 и не могут быть равны");
         }
 
         this.A = A;
-
-    }
-
-    public void setB(double B) throws Exception {
-        if (B <= 0) {
-            throw new Exception("Сторона треугольника должны быть больше 0");
-        }
-
         this.B = B;
-
-    }
-
-    public void setC(double C) throws Exception {
-        if (C <= 0) {
-            throw new Exception("Сторона треугольника должны быть больше 0");
-        }
         this.C = C;
+
     }
 
 
-     public double getPerimeter ()
-     {
-         return A+B+C;
-     }
-     public double getSquare () {
-      double perim = getPerimeter();
-      return Math.sqrt(perim*(perim-A)*(perim-B)*(perim-C));
-     }
+
+
+    public double getPerimeter() {
+        return A + B + C;
+    }
+
+    public double getSquare() {
+        double perimeter = getPerimeter();
+        return Math.sqrt(perimeter * (perimeter - A) * (perimeter - B) * (perimeter - C));
+    }
+
+
 }
