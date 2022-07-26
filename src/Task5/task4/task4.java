@@ -9,11 +9,11 @@ public class task4 {
 
         MyString a = new MyString(chars);
         MyString b = new MyString(chars2);
-        MyString q = add(a, b);
+        MyString sum = add(a, b);
 
-        for (int i = 0; i < q.getChars().length; i++) {
+        for (int i = 0; i < sum.getChars().length; i++) {
 
-            System.out.println(q.getChars()[i]);
+            System.out.println(sum.getChars()[i]);
         }
 
         System.out.println(theSame(a, b));
