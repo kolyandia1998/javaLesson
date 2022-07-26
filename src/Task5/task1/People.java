@@ -18,21 +18,21 @@ public class People {
         try {
             this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
         } catch (DateTimeException e) {
-            System.out.println(e.getMessage());
+            e.getMessage();
         }
     }
 
     public LocalDate getBirthDay() {
         return birthDay;
     }
-    private String reg = "^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$";
+    private String onlyLettersRegex = "^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$";
 
     public int getAge() {
         return LocalDate.now().compareTo(this.birthDay);
     }
 
     public void setName(String name) throws NameException {
-        if (name == null || !name.matches(reg)) {
+        if (name == null || !name.matches(onlyLettersRegex)) {
             throw new NameException("Имя  должно состоять из букв");
         }
         this.name = name;
@@ -44,7 +44,7 @@ public class People {
 
     public void setSurname(String surname) throws NameException {
 
-        if (surname == null || !surname.matches(reg)) {
+        if (surname == null || !surname.matches(onlyLettersRegex)) {
             throw new NameException("Фамилия должна состоять из букв");
         }
         this.surname = surname;
@@ -56,7 +56,7 @@ public class People {
 
     public void setMiddleName(String middle_name) throws NameException {
 
-        if (middle_name == null || !middle_name.matches(reg)) {
+        if (middle_name == null || !middle_name.matches(onlyLettersRegex)) {
             throw new NameException("Фамилия должна состоять из букв");
         }
         this.middleName = middle_name;
