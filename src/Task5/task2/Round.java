@@ -7,12 +7,12 @@ public class Round {
 
     private double radius;
 
+
+
+
     public Round(double xCenter, double yCenter, double radius) throws Exception {
         this.yCenter = yCenter;
         this.xCenter = xCenter;
-        if (radius <= 0) {
-            throw new Exception("Радиус не можеть быть меньше или равен 0");
-        }
         this.radius = radius;
     }
 
@@ -27,11 +27,11 @@ public class Round {
 
 
     public void setRadius(double radius) throws Exception {
-        if (radius <= 0) {
-            throw new Exception("Радиус не можеть быть меньше или равен 0");
-        }
         this.radius = radius;
+    }
 
+   public static boolean  positiveValid (Double input) {
+       return input > 0;
     }
 
     public double getXCenter() {

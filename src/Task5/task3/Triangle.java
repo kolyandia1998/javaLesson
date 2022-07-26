@@ -25,14 +25,14 @@ public class Triangle {
 
 
     public Triangle(double A, double B, double C) throws Exception {
-        if (A <= 0 || B <= 0 || C <= 0 || (A == B && B == C)) {
-            throw new Exception("Сторона треугольника должны быть больше 0 и не могут быть равны");
-        }
 
-        this.A = A;
-        this.B = B;
-        this.C = C;
-
+        if (A + B > C && A + C > B && B + C > A) {
+            this.A = A;
+            this.B = B;
+            this.C = C;
+        } else
+            throw new Exception("Треугольник существует тогда," + "\n" + " когда сумма любых двух его сторон больше третьей стороны." + "\n" +
+                    " В данном случае, условие не выполняется, следовательно, треугольник не существует.");
     }
 
 
