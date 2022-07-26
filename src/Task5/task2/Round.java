@@ -1,13 +1,7 @@
 package Task5.task2;
 
 public class Round {
-
-    private double xCenter;
-    private double yCenter;
-
-    private double radius;
-
-
+    private Double xCenter, yCenter, radius;
 
 
     public Round(double xCenter, double yCenter, double radius) throws Exception {
@@ -30,8 +24,8 @@ public class Round {
         this.radius = radius;
     }
 
-   public static boolean  positiveValid (Double input) {
-       return input > 0;
+    public static boolean positiveValid(Double input) {
+        return input > 0;
     }
 
     public double getXCenter() {

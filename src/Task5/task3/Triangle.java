@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Triangle {
-    private double A;
-    private double B;
-    private double C;
+    private double A, B, C;
 
 
     public static void printMessage(String message) {
