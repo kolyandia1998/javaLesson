@@ -11,16 +11,17 @@ public class People {
     private String surname;
     private String name;
     private String middleName;
-    private LocalDate birthDay = LocalDate.of(1900, 1, 1);
+    private LocalDate birthDay ;
 
 
     public void setBirthDay(int year, int month, int dayOfMonth) throws Exception {
-        try {
-            this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
-        } catch (DateTimeException e) {
-            e.getMessage();
+          if (LocalDate.now().getYear() < year || (month > 12 || month < 1) || dayOfMonth > 31)
+          { throw  new Exception("Не правильно указана дата") ;}
+
+                this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
+
         }
-    }
+
 
     public LocalDate getBirthDay() {
         return birthDay;
