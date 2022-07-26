@@ -12,7 +12,6 @@ public class People {
     private String name;
     private String middle_name;
     private LocalDate birth_day = LocalDate.of(1900, 1, 1);
-    private int age = LocalDate.now().compareTo(birth_day);
 
 
     public void setBirth_day(int year, int month, int dayOfMonth) throws Exception {
@@ -29,7 +28,7 @@ public class People {
 
 
     public int getAge() {
-        return age;
+        return LocalDate.now().compareTo(this.birth_day);
     }
 
     public void setName(String name) throws NameException {
