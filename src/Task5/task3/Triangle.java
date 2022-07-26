@@ -9,25 +9,23 @@ public class Triangle {
     private double C;
 
 
-    public static void printMessage(String message){
+    public static void printMessage(String message) {
         System.out.println(message);
     }
-    public static Double tryParseDouble (String input ){
+
+    public static Double tryParseDouble(String input) {
         try {
 
             return Double.parseDouble(input);
+        } catch (NumberFormatException e) {
+            return null;
         }
-        catch (NumberFormatException e)
-        {return  null;}
 
     }
 
 
-
-
-
-    public  Triangle(double A,double B,double C) throws Exception {
-        if ( A <= 0 || B <=0 || C <= 0 || (A==B && B==C)) {
+    public Triangle(double A, double B, double C) throws Exception {
+        if (A <= 0 || B <= 0 || C <= 0 || (A == B && B == C)) {
             throw new Exception("Сторона треугольника должны быть больше 0 и не могут быть равны");
         }
 
@@ -36,8 +34,6 @@ public class Triangle {
         this.C = C;
 
     }
-
-
 
 
     public double getPerimeter() {

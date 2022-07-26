@@ -10,15 +10,11 @@ public class Round {
     public Round(double xCenter, double yCenter, double radius) throws Exception {
         this.yCenter = yCenter;
         this.xCenter = xCenter;
-        if (radius<= 0)
-        {
+        if (radius <= 0) {
             throw new Exception("Радиус не можеть быть меньше или равен 0");
         }
         this.radius = radius;
     }
-
-
-
 
 
     public void setXCenter(double xCenter) {
@@ -31,8 +27,7 @@ public class Round {
 
 
     public void setRadius(double radius) throws Exception {
-        if (radius<= 0)
-        {
+        if (radius <= 0) {
             throw new Exception("Радиус не можеть быть меньше или равен 0");
         }
         this.radius = radius;

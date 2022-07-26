@@ -25,13 +25,12 @@ public class task2 {
                 radius = tryParseDouble(bufferedReader.readLine());
             }
         }
-            Round circle = new Round(X, Y, radius);
+        Round circle = new Round(X, Y, radius);
 
 
-            System.out.println("Площадь равна:" + circle.getCircleS());
-            circle.getCircleS();
-            System.out.println("Длина равна:" + circle.getCircleLong());
+        System.out.println("Площадь равна:" + circle.getCircleS());
+        System.out.println("Длина равна:" + circle.getCircleLong());
 
-        }
     }
+}
 

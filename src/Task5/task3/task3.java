@@ -21,7 +21,7 @@ public class task3 {
             } else if (B == null) {
                 printMessage("Введите B");
                 B = tryParseDouble(bufferedReader.readLine());
-            } else if (C == null) {
+            } else {
                 printMessage("Введите C");
                 C = tryParseDouble(bufferedReader.readLine());
             }
