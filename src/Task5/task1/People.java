@@ -11,21 +11,23 @@ public class People {
     private String surname;
     private String name;
     private String middleName;
-    private LocalDate birthDay ;
+    private LocalDate birthDay;
 
 
     public void setBirthDay(int year, int month, int dayOfMonth) throws Exception {
-          if (LocalDate.now().getYear() < year || (month > 12 || month < 1) || dayOfMonth > 31)
-          { throw  new Exception("Не правильно указана дата") ;}
-
-                this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
-
+        if (LocalDate.now().getYear() < year || (month > 12 || month < 1) || dayOfMonth > 31) {
+            throw new Exception("Не правильно указана дата");
         }
+
+        this.birthDay = LocalDate.of(year, Month.of(month), dayOfMonth);
+
+    }
 
 
     public LocalDate getBirthDay() {
         return birthDay;
     }
+
     private String onlyLettersRegex = "^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$";
 
     public int getAge() {
