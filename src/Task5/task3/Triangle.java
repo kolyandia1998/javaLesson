@@ -1,5 +1,7 @@
 package Task5.task3;
 
+import Task5.task3.Exeption.TriangleExeption;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -29,7 +31,7 @@ public class Triangle {
             this.B = B;
             this.C = C;
         } else
-            throw new Exception("Треугольник существует тогда," + "\n" + " когда сумма любых двух его сторон больше третьей стороны." + "\n" +
+            throw new TriangleExeption("Треугольник существует тогда," + "\n" + " когда сумма любых двух его сторон больше третьей стороны." + "\n" +
                     " В данном случае, условие не выполняется, следовательно, треугольник не существует.");
     }
 

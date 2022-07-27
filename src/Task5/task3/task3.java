@@ -1,5 +1,7 @@
 package Task5.task3;
 
+import Task5.task3.Exeption.TriangleExeption;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -28,9 +30,14 @@ public class task3 {
 
         }
         bufferedReader.close();
-        Triangle triangle = new Triangle(A, B, C);
+        Triangle triangle = null;
+        try {
+            triangle = new Triangle(A, B, C);
+            System.out.println("Периметр равен:" + triangle.getPerimeter());
+            System.out.println("Площадь равна:" + triangle.getSquare());
+        } catch (TriangleExeption exeption) {
+            System.out.println(exeption.getMessage());
+        }
 
-        System.out.println("Периметр равен:" + triangle.getPerimeter());
-        System.out.println("Площадь равна:" + triangle.getSquare());
     }
 }
