@@ -27,10 +27,10 @@ public class task2 {
             } else if (Y == null) {
                 printMessage("Введите координату центра по оси Y");
                 Y = tryParseDouble(bufferedReader.readLine());
-            } else if (radius == null || !positiveValid(radius)) {
+            } else if (radius == null) {
                 printMessage("Введите внешний радиус");
                 radius = tryParseDouble(bufferedReader.readLine());
-            } else if (innerRadius == null || !positiveValid(innerRadius)) {
+            } else if (innerRadius == null ) {
                 printMessage("Введите внутренний радиус");
                 innerRadius = tryParseDouble(bufferedReader.readLine());
             }
@@ -39,7 +39,7 @@ public class task2 {
         try {
             ring = new Ring(X, Y, radius, innerRadius);
             System.out.println("Площадь равна:" + ring.ringSquare());
-            System.out.println("Длина внутренняя:" + ring.getInnerCircleLong());
+            System.out.println("Длина внутренняя:" + ring.getCircleLong());
             System.out.println("Длинна внешняя: " + ring.getCircleLong());
             System.out.println(ring.getCircleS());
         } catch (Exception e) {

@@ -6,12 +6,15 @@ public class Ring extends Round {
 
     public Ring(double xCenter, double yCenter, double radius, double innerRadius) throws Exception {
         super(xCenter, yCenter, radius);
-        if (innerRadius >= radius) {
-            throw new Exception("Внутренний радиус не может быть больше внешнего");
-        }
-        else if (innerRadius <= 0)
-        {  throw new Exception("Радиус должен быть положительным");}
+        TrowIfInvalidRadius(innerRadius);
+        TrowIfInvalidInnerRadius(innerRadius);
             this.innerRadius = innerRadius;
+    }
+
+
+    protected void TrowIfInvalidInnerRadius(double radius) throws Exception {
+        if (innerRadius >=getRadius())
+        {throw new Exception("Внутренний радиус должен быть меньше внешнего");}
     }
 
     private double innerRadius;
@@ -21,12 +24,8 @@ public class Ring extends Round {
     }
 
     public void setInnerRadius(double innerRadius) throws Exception {
-        if (innerRadius <= getRadius()) {
-            throw new Exception("Это не кольцо");
-        }
-        else if (innerRadius <= 0)
-        { throw new Exception("Радиус должен быть положительным");}
-
+        TrowIfInvalidRadius(innerRadius);
+        TrowIfInvalidInnerRadius(innerRadius);
         this.innerRadius = innerRadius;
     }
 

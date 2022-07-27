@@ -7,10 +7,14 @@ public class Round {
     public Round(double xCenter, double yCenter, double radius) throws Exception {
         this.yCenter = yCenter;
         this.xCenter = xCenter;
+        TrowIfInvalidRadius(radius);
         this.radius = radius;
     }
 
-
+    protected void TrowIfInvalidRadius (double radius) throws Exception {
+        if (radius <= 0)
+        {throw  new Exception("Радус должен быть больше 0");}
+    }
     public void setXCenter(double xCenter) {
         this.xCenter = xCenter;
     }
@@ -21,6 +25,7 @@ public class Round {
 
 
     public void setRadius(double radius) throws Exception {
+        TrowIfInvalidRadius(radius);
         this.radius = radius;
     }
 
