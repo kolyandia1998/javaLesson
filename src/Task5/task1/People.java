@@ -14,6 +14,8 @@ public class People {
     private LocalDate birthDay;
 
 
+
+
     public void setBirthDay(int year, int month, int dayOfMonth) throws Exception {
         if (LocalDate.now().getYear() < year || (month > 12 || month < 1) || dayOfMonth > 31) {
             throw new Exception("Не правильно указана дата");
