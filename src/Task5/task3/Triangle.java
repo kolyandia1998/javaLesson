@@ -25,6 +25,9 @@ public class Triangle {
 
 
     public Triangle(double A, double B, double C) throws Exception {
+        if (A <= 0 || B <= 0 || C <= 0) {
+            throw new TriangleExeption("Стороны треугольника должны быть положительными");
+        }
 
         if (A + B > C && A + C > B && B + C > A) {
             this.A = A;

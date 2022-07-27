@@ -16,13 +16,13 @@ public class task3 {
         Double A = null, B = null, C = null;
 
         while (A == null || B == null || C == null) {
-            if (A == null || !positiveValid(A)) {
+            if (A == null) {
                 printMessage("Введите А (A должно быть положительным)");
                 A = tryParseDouble(bufferedReader.readLine());
-            } else if (B == null || !positiveValid(B)) {
+            } else if (B == null) {
                 printMessage("Введите B (В должно быть положительным)");
                 B = tryParseDouble(bufferedReader.readLine());
-            } else if (C == null || !positiveValid(C)) {
+            } else if (C == null) {
                 printMessage("Введите C (С должно быть положительным)");
                 C = tryParseDouble(bufferedReader.readLine());
 
