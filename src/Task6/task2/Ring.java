@@ -8,7 +8,10 @@ public class Ring extends Round {
         super(xCenter, yCenter, radius);
         if (innerRadius >= radius) {
             throw new Exception("Внутренний радиус не может быть больше внешнего");
-        } else this.innerRadius = innerRadius;
+        }
+        else if (innerRadius <= 0)
+        {  throw new Exception("Радиус должен быть положительным");}
+            this.innerRadius = innerRadius;
     }
 
     private double innerRadius;
@@ -21,6 +24,9 @@ public class Ring extends Round {
         if (innerRadius <= getRadius()) {
             throw new Exception("Это не кольцо");
         }
+        else if (innerRadius <= 0)
+        { throw new Exception("Радиус должен быть положительным");}
+
         this.innerRadius = innerRadius;
     }
 
