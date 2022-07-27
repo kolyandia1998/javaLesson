@@ -9,7 +9,7 @@ import static Task5.task3.Triangle.tryParseDouble;
 
 public class task2 {
     public static void main(String[] args) throws Exception {
-        Double X = null,Y = null,radius = null;
+        Double X = null, Y = null, radius = null;
 
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -20,7 +20,7 @@ public class task2 {
             } else if (Y == null) {
                 printMessage("Введите координату центра по оси Y");
                 Y = tryParseDouble(bufferedReader.readLine());
-            } else if (radius==null || !positiveValid(radius)){
+            } else if (radius == null ) {
                 printMessage("Введите радиус");
                 radius = tryParseDouble(bufferedReader.readLine());
             }

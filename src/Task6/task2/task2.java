@@ -30,7 +30,7 @@ public class task2 {
             } else if (radius == null) {
                 printMessage("Введите внешний радиус");
                 radius = tryParseDouble(bufferedReader.readLine());
-            } else if (innerRadius == null ) {
+            } else if (innerRadius == null) {
                 printMessage("Введите внутренний радиус");
                 innerRadius = tryParseDouble(bufferedReader.readLine());
             }

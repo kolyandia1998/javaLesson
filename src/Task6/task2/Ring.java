@@ -8,13 +8,14 @@ public class Ring extends Round {
         super(xCenter, yCenter, radius);
         TrowIfInvalidRadius(innerRadius);
         TrowIfInvalidInnerRadius(innerRadius);
-            this.innerRadius = innerRadius;
+        this.innerRadius = innerRadius;
     }
 
 
     protected void TrowIfInvalidInnerRadius(double radius) throws Exception {
-        if (innerRadius >=getRadius())
-        {throw new Exception("Внутренний радиус должен быть меньше внешнего");}
+        if (innerRadius >= getRadius()) {
+            throw new Exception("Внутренний радиус должен быть меньше внешнего");
+        }
     }
 
     private double innerRadius;

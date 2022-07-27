@@ -11,10 +11,12 @@ public class Round {
         this.radius = radius;
     }
 
-    protected void TrowIfInvalidRadius (double radius) throws Exception {
-        if (radius <= 0)
-        {throw  new Exception("Радус должен быть больше 0");}
+    protected void TrowIfInvalidRadius(double radius) throws Exception {
+        if (radius <= 0) {
+            throw new Exception("Радус должен быть больше 0");
+        }
     }
+
     public void setXCenter(double xCenter) {
         this.xCenter = xCenter;
     }
