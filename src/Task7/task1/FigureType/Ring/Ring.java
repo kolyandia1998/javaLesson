@@ -38,13 +38,13 @@ public class Ring extends Figure {
         }
     }
 
-    private void trowIfInvalidInnerRadius (Double innerRadius) throws RadiusException{
-        if (innerRadius >= outerRadius ) {
+    private void trowIfInvalidInnerRadius(Double innerRadius) throws RadiusException {
+        if (innerRadius >= outerRadius) {
             throw new RadiusException("Внутренний радиус должен быть меньше внешнего");
         }
     }
 
-    public Ring(Double x, Double y, Double innerRadius, Double  outerRadius) throws RadiusException {
+    public Ring(Double x, Double y, Double innerRadius, Double outerRadius) throws RadiusException {
         super(x, y);
         throwIfInvalidRadius(innerRadius);
         throwIfInvalidRadius(outerRadius);

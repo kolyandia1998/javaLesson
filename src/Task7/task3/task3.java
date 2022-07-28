@@ -18,6 +18,7 @@ public class task3 {
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
+
         double[] array = new double[10];
         array[0] = 1.0;
         array[1] = 2.0;
@@ -37,8 +38,5 @@ public class task3 {
         } catch (NumberFormatException e) {
             System.out.println(e.getMessage());
         }
-
-
     }
-
 }

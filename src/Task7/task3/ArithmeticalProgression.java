@@ -4,11 +4,8 @@ import Task7.task2.Interfaces.ISeries;
 import Task7.task3.Interfaces.IIndexable;
 
 public class ArithmeticalProgression implements ISeries, IIndexable {
-
-
     double start, step;
     int currentIndex, index;
-
 
     public ArithmeticalProgression(double start, double step) {
         this.start = start;
@@ -35,8 +32,6 @@ public class ArithmeticalProgression implements ISeries, IIndexable {
             System.out.println(series.GetCurrent());
             series.MoveNext();
         }
-
-
     }
 
     @Override

@@ -1,6 +1,6 @@
 package Task7.task1.FigureType.Ring.RadiusException;
 
-public class RadiusException extends Exception{
+public class RadiusException extends Exception {
     public RadiusException() {
     }
 

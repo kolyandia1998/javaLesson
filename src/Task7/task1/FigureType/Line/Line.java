@@ -5,10 +5,8 @@ import Task7.task1.FigureType.Line.LineExeption.LineException;
 import Task7.task1.FigureType.Line.LineExeption.LineException;
 
 public class Line extends Figure {
-
     private final String name = "Line";
-    private Double pointA,pointB;
-
+    private Double pointA, pointB;
 
     private void checkLine(Double pointA, Double PointB) throws LineException {
         if (pointA == PointB) {
@@ -18,7 +16,7 @@ public class Line extends Figure {
 
     public Line(Double x, Double y, Double pointA, Double pointB) throws LineException {
         super(x, y);
-        checkLine(pointA,pointB);
+        checkLine(pointA, pointB);
         this.pointA = pointA;
         this.pointB = pointB;
     }
@@ -44,7 +42,4 @@ public class Line extends Figure {
                 ", pointB=" + pointB +
                 '}';
     }
-
-
-
 }

@@ -2,12 +2,9 @@ package Task7.task1;
 
 public abstract class Figure {
     private String name;
-    private Double X,Y;
+    private Double X, Y;
 
-
-
-    public Figure( Double x, Double y) {
-
+    public Figure(Double x, Double y) {
         X = x;
         Y = y;
     }

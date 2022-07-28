@@ -11,22 +11,17 @@ import java.util.ArrayList;
 
 public class task1 {
 
-    public static void showFigureInfo(ArrayList<Figure> MyFigure){
-
-        for (int i =0; i < MyFigure.size(); i++){
+    public static void showFigureInfo(ArrayList<Figure> MyFigure) {
+        for (int i = 0; i < MyFigure.size(); i++) {
             System.out.println(MyFigure.get(i).Draw());
         }
-
     }
-
 
     public static void main(String[] args) throws RadiusException, SizeException, LineException {
         ArrayList<Figure> MyFigure = new ArrayList<Figure>();
-        MyFigure.add(new Rectangle(0.0,0.0,10.0,12.0));
-        MyFigure.add(new Line(0.0,10.0,5.0,10.0));
+        MyFigure.add(new Rectangle(0.0, 0.0, 10.0, 12.0));
+        MyFigure.add(new Line(0.0, 10.0, 5.0, 10.0));
 
-       showFigureInfo(MyFigure);
-
+        showFigureInfo(MyFigure);
     }
-
 }

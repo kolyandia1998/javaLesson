@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class task2 {
-
-
     public static void main(String[] args) {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         try {
@@ -19,7 +17,5 @@ public class task2 {
             System.out.println(e.getMessage());
         }
     }
-
-
 }
 

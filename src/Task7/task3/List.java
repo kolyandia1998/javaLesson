@@ -4,8 +4,6 @@ import Task7.task2.Interfaces.ISeries;
 import Task7.task3.Interfaces.IIndexable;
 
 public class List implements ISeries, IIndexable {
-
-
     private double[] series;
     private int currentIndex;
 
@@ -27,14 +25,12 @@ public class List implements ISeries, IIndexable {
         currentIndex = 0;
     }
 
-
     @Override
     public double thisElement(int index) {
         while (currentIndex != index) {
             MoveNext();
         }
         return GetCurrent();
-
     }
 }
 
