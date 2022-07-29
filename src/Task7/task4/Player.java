@@ -1,5 +1,7 @@
 package Task7.task4;
 
+import jdk.jshell.spi.ExecutionControl;
+
 import java.util.Set;
 
 public class Player implements IMoove {
@@ -12,11 +14,14 @@ public class Player implements IMoove {
         this.Y = 0;
     }
 
+
+
     public static void increaseLife() {
-        life++;
+
     }
 
     public static void decreaseLife() {
+
         life--;
     }
 
