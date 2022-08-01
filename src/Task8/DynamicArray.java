@@ -100,8 +100,8 @@ public class DynamicArray<T> {
     }
 
     public void addRange(T[] arrayForAdd) {
-        int freeCell = (array.length - length);
-        if (freeCell < arrayForAdd.length) {
+        int freeSpace = (array.length - length);
+        if (freeSpace < arrayForAdd.length) {
             resize(size() + arrayForAdd.length);
         }
         for (int i = 0; i < arrayForAdd.length; i++) {
