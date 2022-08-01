@@ -2,7 +2,6 @@ package Task8;
 
 public class DynamicArray<T> {
     public DynamicArray() {
-
         this.array = new Object[8];
     }
 
@@ -35,7 +34,6 @@ public class DynamicArray<T> {
         if (isEndOfArray()) {
             resize();
         }
-
         array[length] = item;
         length++;
     }
