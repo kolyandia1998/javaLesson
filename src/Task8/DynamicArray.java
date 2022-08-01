@@ -1,60 +1,76 @@
 package Task8;
 
 public class DynamicArray<T> {
-
-    private final int initSize = 8;
-
-    private Object[] array = new Object[initSize];
-
-    public int countElements = 0;
-
-    public DynamicArray(int size) {
-        array = new Object[size];
+    private DynamicArray() {
+        new DynamicArray<T>(8);
     }
 
+    private Object[] array;
+    public int length = 0;
+
+    public DynamicArray(int size) {
+        new DynamicArray<T>(size);
+    }
+
+    private void rangeCheck(int index) {
+        if (index < 0 || index >= getRealSize()) {
+            throw new ArrayIndexOutOfBoundsException("Индекс не входит в границы массива");
+        }
+    }
     public DynamicArray(T[] object) {
         array = object;
     }
-
-    public int getRealSize() {
+    private int getRealSize() {
         return array.length;
     }
-
-
-    private boolean isEnd() {
-        return countElements == array.length;
+    private boolean isEndOfArray() {
+        return length == array.length;
     }
-
-
     public void add(T item) {
-        if (isEnd()) {
+        if (isEndOfArray()) {
             resize();
-            array[countElements++] = item;
-
-        } else {
-            array[countElements] = item;
-            countElements++;
         }
+        length++;
+        array[length] = item;
     }
 
-    public T get(int index) {
+    public T get(int index) throws Exception {
+        rangeCheck(index);
         return (T) array[index];
     }
+    public void Set(int index, T item) throws Exception {
+        rangeCheck(index);
+        array[index] = index;
+    }
+    public boolean Remove(int index) {
 
-    public Boolean Remove(int index) {
-
-        if (index < 0 || index > countElements) {
+        if (index < 0 || index > length) {
             return false;
         }
-        for (int i = index; i < countElements; i++) {
+        for (int i = index; i < length; i++) {
             array[i] = array[i + 1];
         }
-        array[countElements] = null;
-        countElements--;
+        array[length] = null;
+        length--;
         return true;
     }
+    public void Insert(T item, int Index) throws Exception {
+        if (Index > array.length || Index < 0) {
+            throw new ArrayIndexOutOfBoundsException("Выход за пределы массива");
+        }
+
+        if (isEndOfArray()) {
+            resize();
+        }
+
+        for (int i = length; i > Index; i--) {
+            array[i] = array[i - 1];
+        }
+        array[Index] = item;
+        length++;
+    }
     public void AddRange(T[] arrayForAdd) {
-        int freeCell = (array.length - countElements);
+        int freeCell = (array.length - length);
         if (freeCell < arrayForAdd.length) {
             Object[] intermediateArray = new Object[array.length + arrayForAdd.length - freeCell];
             for (int i = 0; i < array.length; i++) {
@@ -65,16 +81,15 @@ public class DynamicArray<T> {
                 intermediateArray[i + array.length] = arrayForAdd[i];
             }
             array = intermediateArray;
-            countElements = array.length;
+            length = array.length;
         } else {
             for (int i = 0; i < arrayForAdd.length; i++) {
                 add(arrayForAdd[i]);
-
             }
         }
     }
     public int size() {
-        return countElements;
+        return length;
     }
     private void resize() {
         Object[] newArray = new Object[array.length * 2];
