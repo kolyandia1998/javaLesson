@@ -14,7 +14,7 @@ public class task8 {
         dynamicArray.add("test3");
         dynamicArray.add("test4");
         dynamicArray.add("test5");
-        dynamicArray.RemoveItem("test3");
+        dynamicArray.Remove("test3");
 
         System.out.println(dynamicArray.get(2));
     }

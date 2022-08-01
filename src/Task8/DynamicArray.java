@@ -22,7 +22,7 @@ public class DynamicArray<T> {
         array = object;
     }
 
-    public int getRealSize() {
+    private int getRealSize() {
         return array.length;
     }
 
@@ -59,7 +59,7 @@ public class DynamicArray<T> {
         return index;
     }
 
-    public boolean RemoveItem(T item) {
+    public boolean Remove(T item) {
 
         int index = getIndex(item);
         if (index == -1) {
