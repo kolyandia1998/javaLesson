@@ -1,5 +1,6 @@
 package Task8;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,30 +8,15 @@ public class task8 {
     public static void main(String[] args) throws Exception {
 
 
-        ArrayList<String> arrayList = new ArrayList<>();
+        DynamicArray<String> dynamicArray = new DynamicArray<String>(9);
+        dynamicArray.add("test1");
+        dynamicArray.add("test2");
+        dynamicArray.add("test3");
+        dynamicArray.add("test4");
+        dynamicArray.add("test5");
+        dynamicArray.RemoveItem("test3");
 
-        DynamicArray<String> array = new DynamicArray<String>(10);
-        int count = 0;
-        for (int i = 0; i < 10; i++) {
-            array.add("test" + count++);
-            System.out.println(array.get(i) + "  Размер массива=" + array.size());
-        }
-        System.out.println("Реальный размер массива равен " );
-        System.out.println("Добавим еще один эелемент в массив (массив в данный момент полный)");
-        array.add("Тест на изменение реального размера");
-        System.out.println("Удалим 10 элемент");
-        array.Remove(10);
-        System.out.println("Размер массива=" + array.size());
-        String[] str = new String[]{"qwer", "qwer", "qwert"};
-        System.out.println("Добавим массив с 3 эелементами в коней");
-        array.AddRange(str);
-        System.out.println("Размер массива=" + array.size());
-
-        for (int i = 0; i < array.size(); i++) {
-            System.out.println(array.get(i) + " Размер массива=" + array.size());
-        }
-
-
+        System.out.println(dynamicArray.get(2));
     }
 
 
