@@ -27,9 +27,7 @@ public class DynamicArray<T> {
     }
 
     public void add(T item) {
-        if (isEndOfArray()) {
-            resize(2);
-        }
+        resizeIfNeed(2);
         array[length] = item;
         length++;
     }
@@ -60,13 +58,17 @@ public class DynamicArray<T> {
     }
 
     public boolean remove(T item) {
-
         int index = getIndex(item);
         if (index == -1) {
             return false;
         }
         return remove(index);
+    }
 
+    public void resizeIfNeed(int factor) {
+        if (isEndOfArray()) {
+            resize(factor);
+        }
     }
 
     public boolean remove(int index) {
@@ -100,16 +102,13 @@ public class DynamicArray<T> {
     }
 
     public void addRange(T[] arrayForAdd) {
-        int freeSpace = (array.length - length);
-        if (freeSpace < arrayForAdd.length) {
-            resize(size() + arrayForAdd.length);
+        if (array.length - arrayForAdd.length < 0) {
+            resizeIfNeed(size() + arrayForAdd.length);
         }
         for (int i = 0; i < arrayForAdd.length; i++) {
-            array[i + array.length] = arrayForAdd[i];
+            add(arrayForAdd[i]);
         }
-        length = array.length;
     }
-
 
     private void resize(int factor) {
         Object[] newArray = new Object[array.length * factor];
