@@ -7,16 +7,18 @@ import java.util.List;
 public class task8 {
     public static void main(String[] args) throws Exception {
 
+        DynamicArray<Double> dynamicArray = new DynamicArray<Double>(100);
+        for (int i = 0 ; i < 100; i++){
 
-        DynamicArray<String> dynamicArray = new DynamicArray<String>(9);
-        dynamicArray.add("test1");
-        dynamicArray.add("test2");
-        dynamicArray.add("test3");
-        dynamicArray.add("test4");
-        dynamicArray.add("test5");
-        dynamicArray.remove("test3");
+            dynamicArray.add(Math.random());
+        }
+         Double[] array = new Double[100];
+         for (int i = 0; i < array.length; i++){
+             array[i] = Math.random();
+         }
 
-        System.out.println(dynamicArray.get(2));
+         dynamicArray.addRange(array);
+         System.out.println(dynamicArray.size() + "  " + dynamicArray.get(123));
     }
 
 
