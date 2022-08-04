@@ -1,6 +1,12 @@
 package Task8;
 
-public class DynamicArray<T> {
+import Task7.task3.Interfaces.IIndexable;
+
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Consumer;
+
+public class DynamicArray<T>   {
     public DynamicArray() {
         this(8);
     }
@@ -27,7 +33,7 @@ public class DynamicArray<T> {
     }
 
     public void add(T item) {
-        resizeIfNeed(2);
+        resizeIfNeed(array.length * 2);
         array[length] = item;
         length++;
     }
@@ -41,7 +47,7 @@ public class DynamicArray<T> {
         return (T) array[index];
     }
 
-    public void Set(int index, T item) throws Exception {
+    public void set(int index, T item) throws Exception {
         rangeCheck(index);
         array[index] = index;
     }
@@ -65,10 +71,9 @@ public class DynamicArray<T> {
         return remove(index);
     }
 
-    public void resizeIfNeed(int factor) {
-        if (isEndOfArray()) {
-            resize(factor);
-        }
+    public void resizeIfNeed(int length) {
+        if (isEndOfArray())
+            resize(length);
     }
 
     public boolean remove(int index) {
@@ -90,9 +95,7 @@ public class DynamicArray<T> {
             throw new ArrayIndexOutOfBoundsException("Выход за пределы массива");
         }
 
-        if (isEndOfArray()) {
-            resize(2);
-        }
+        resizeIfNeed(array.length * 2);
 
         for (int i = length; i > Index; i--) {
             array[i] = array[i - 1];
@@ -102,19 +105,25 @@ public class DynamicArray<T> {
     }
 
     public void addRange(T[] arrayForAdd) {
-        if (array.length - arrayForAdd.length < 0) {
-            resizeIfNeed(size() + arrayForAdd.length);
+        if ((arrayForAdd.length + length) > array.length) {
+            resize(arrayForAdd.length + length);
         }
         for (int i = 0; i < arrayForAdd.length; i++) {
             add(arrayForAdd[i]);
         }
     }
 
-    private void resize(int factor) {
-        Object[] newArray = new Object[array.length * factor];
+    private void resize(int newSize) {
+
+        Object[] newArray = new Object[newSize];
         for (int i = 0; i < array.length; i++) {
             newArray[i] = array[i];
         }
         array = newArray;
     }
+
+
+
+
+
 }
