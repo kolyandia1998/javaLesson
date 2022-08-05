@@ -3,6 +3,7 @@ package Task8;
 import Task7.task3.Interfaces.IIndexable;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -11,14 +12,14 @@ public class DynamicArray<T>   {
         this(8);
     }
 
-    private Object[] array;
-    private int length = 0;
+    protected Object[] array;
+    protected int length = 0;
 
     public DynamicArray(int size) {
         this.array = new Object[size];
     }
 
-    private void rangeCheck(int index) {
+    protected void rangeCheck(int index) {
         if (index < 0 || index >= array.length) {
             throw new ArrayIndexOutOfBoundsException("Индекс не входит в границы массива");
         }

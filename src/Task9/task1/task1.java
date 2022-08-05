@@ -35,9 +35,11 @@ public class task1 {
         integer.add(8);
         integer.add(9);
         integer.add(10);
-        RemoveEachSecondItem(integer,2);
 
-        System.out.println(integer.get(0));
+        OneOfN(integer,2);
+        for (Integer i:integer){
+            System.out.println(i);
+        }
 
     }
 }
