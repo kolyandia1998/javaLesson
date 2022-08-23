@@ -1,9 +1,11 @@
 package Task9.task2;
 
 import Task7.task3.Interfaces.IIndexable;
+import Task7.task3.List;
 import Task8.DynamicArray;
 import org.w3c.dom.Node;
 
+import javax.swing.*;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -20,12 +22,13 @@ public class MyList<T> extends DynamicArray implements Iterator<T> {
         this.array = new Object[size];
     }
 
-    public MyList(List<T> list) {
-        array = new Object[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            array[i] = list.get(i);
-        }
-        length = list.size();
+    public MyList(Iterable<T> iterable) {
+         ArrayList<T> arrayList = new ArrayList<>();
+         while (iterable.iterator().hasNext()) {
+             arrayList.add(iterable.iterator().next());
+         }
+        array = arrayList.toArray();
+        length = arrayList.size();
     }
 
     private int current = 0;

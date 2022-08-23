@@ -12,6 +12,7 @@ public class task2 {
         arrayList.add("test34");
         arrayList.add("test3");
 
+
         MyList<String> myList = new MyList<>(arrayList);
 
         while (myList.hasNext()) {
