@@ -18,12 +18,14 @@ public class Office implements ISomeAction {
 
 
     private void doToEveryone(SaySomth saySomth, String name,String whatSay) {
+
         for (Person p : personInOffice) {
             saySomth.Say(whatSay + name + "  - Сказал " + p.getName());
         }
     }
     @Override
     public void greet(Date date, String name, Person person) {
+          howSay.Say(name + " пришел на работу");
         int currentHour = date.getHours();
         String greeting = null;
         if (currentHour >= 12 && currentHour <= 17) {
@@ -38,6 +40,7 @@ public class Office implements ISomeAction {
     }
     @Override
     public void gone(String name, Person person) {
+        howSay.Say(name + " ушел с работы");
         personInOffice.remove(person);
         doToEveryone(howSay, name,"Пока, ");
 

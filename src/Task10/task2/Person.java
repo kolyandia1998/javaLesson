@@ -37,6 +37,7 @@ public class Person {
     }
 
     public void going() {
+
         for (ISomeAction hl : listeners)
             hl.gone(this.getName(), this);
     }
