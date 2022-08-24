@@ -6,7 +6,7 @@ public class task1 implements compare {
         int alength = a.length();
         int blength = b.length();
         if (alength != blength)
-            return false;
+        { return false;}
         else {
             char[] achars = a.toLowerCase().toCharArray();
             char[] bchars = b.toLowerCase().toCharArray();

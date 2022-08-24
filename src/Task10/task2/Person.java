@@ -1,13 +1,18 @@
 package Task10.task2;
 
-import org.w3c.dom.events.Event;
-
-import java.awt.*;
-import java.sql.Time;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.EventObject;
 
 public class Person {
+    private Date dateComing;
+
+    private void setDateComing() {
+        this.dateComing = new Date();
+    }
+
+    public Person(String name) {
+        this.name = name;
+    }
 
     private String name;
 
@@ -15,37 +20,26 @@ public class Person {
         return name;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void greetings (Person ob,Date date, Greet obj) {
-         int currentHour = date.getHours();
+    private ArrayList<ISomeAction> listeners = new ArrayList<ISomeAction>();
 
-          if (currentHour>=12 && currentHour <= 17)
-                { String hi = "Добрый день," + ob.getName();
-                    obj.great(hi);}
-          else if (currentHour>= 8 && currentHour <= 11)
-                { String hi = "Доброе утро," + ob.getName();
-                    obj.great(hi);}
-          else if (currentHour>=18){
-                String hi = "Добрый вечер," + ob.getName();
-                    obj.great(hi);
-          }
+    public void addListener(ISomeAction toAdd) {
+        listeners.add(toAdd);
     }
 
-    public void bye (Person ob, By obj) {
-           String by = "До свидания, " + ob.getName();
-           obj.by(by);
+    public void coming() {
+        this.setDateComing();
+        for (ISomeAction hl : listeners)
+            hl.greet(this.dateComing, this.getName(), this);
     }
 
-
-    EventObject eventObject;
-    public void coming (Person obj) {
-
-
+    public void going() {
+        for (ISomeAction hl : listeners)
+            hl.gone(this.getName(), this);
     }
-
-
 }
+
+
