@@ -5,19 +5,40 @@ import Task10.task1.compare;
 import com.sun.jdi.event.ThreadDeathEvent;
 import com.sun.jdi.request.ThreadDeathRequest;
 
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
+
 public class ThreadSort extends MySort {
-    public static void threadBubbleSorter(String[] array, compare obj, IShowStatus status ) throws InterruptedException {
-         Runnable statusRun = () -> status.show();
-         Thread statusThread = new Thread(statusRun);
+
+    private ArrayList<IShowStatus> listener = new ArrayList<>();
+
+    public void addListener(IShowStatus status) {
+        listener.add(status);
+    }
+
+    public void removeListener(IShowStatus status) {
+        listener.remove(status);
+    }
+
+    private void onDone(String[] str) {
+        for (IShowStatus listener : listener) {
+            listener.show(str);
+        }
+    }
+
+
+    public void threadBubbleSorter(String[] array, compare obj) throws InterruptedException {
+
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                bubbleSorter(array,obj);
-                statusThread.start();
+                var copy = array.clone();
+                bubbleSorter(copy, obj);
+                onDone(copy);
             }
         };
         Thread sortThread = new Thread(runnable);
         sortThread.start();
-        }
+    }
 }
 

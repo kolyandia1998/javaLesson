@@ -3,6 +3,8 @@ package Task10.task3;
 import Task10.task1.MySort;
 import Task10.task1.compare;
 
+import java.util.Arrays;
+
 public class task3 {
 
     public static boolean isFirstGreaterThanSecond(String a, String b) {
@@ -26,29 +28,25 @@ public class task3 {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        ThreadSort sort = new ThreadSort();
+        IShowStatus consoleOut = (str) -> {
+            for (String string : str) {
+                System.out.println(string);
+            }
+        };
+        sort.addListener(consoleOut);
         String[] a = new String[5];
-        a[0] = "aaa";
-        a[1] = "c";
-        a[2] = "fdggg";
-        a[3] = "a";
-        a[4] = "d";
-        ThreadSort.threadBubbleSorter(a, (String str1, String str2) -> str1.length() > str2.length() || (isFirstGreaterThanSecond(str1, str2)), (() -> {
-            System.out.println("Сортировка завершена");
-        }));
+        a[0] = "ab";
+        a[1] = "abcde";
+        a[2] = "aqwq";
+        a[3] = "bc";
+        a[4] = "ds";
 
-        for (String str :
-                a) {
+        sort.threadBubbleSorter(a, (String str1, String str2) -> str1.length() > str2.length() || (isFirstGreaterThanSecond(str1, str2)));
+        for (String str : a) {
             System.out.println(str);
         }
-        for (String str :
-                a) {
-            System.out.println(str);
-        }
-        for (String str :
-                a) {
-            System.out.println(str);
-        }
+
     }
-
 }
 
