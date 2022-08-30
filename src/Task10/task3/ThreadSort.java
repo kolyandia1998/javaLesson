@@ -2,27 +2,24 @@ package Task10.task3;
 
 import Task10.task1.MySort;
 import Task10.task1.compare;
-import com.sun.jdi.event.ThreadDeathEvent;
-import com.sun.jdi.request.ThreadDeathRequest;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class ThreadSort extends MySort {
 
-    private ArrayList<IShowStatus> listener = new ArrayList<>();
+    private ArrayList<IStatus> listener = new ArrayList<>();
 
-    public void addListener(IShowStatus status) {
+    public void addListener(IStatus status) {
         listener.add(status);
     }
 
-    public void removeListener(IShowStatus status) {
+    public void removeListener(IStatus status) {
         listener.remove(status);
     }
 
     private void onDone(String[] str) {
-        for (IShowStatus listener : listener) {
-            listener.show(str);
+        for (IStatus listener : listener) {
+            listener.done(str);
         }
     }
 
