@@ -2,10 +2,10 @@ package Task6.task1;
 
 import Task5.task1.People;
 
-public class Employee extends People {
+public class Employer extends People {
 
-    private int workExperience;
-    private String jobTitle;
+    protected int workExperience;
+    protected String jobTitle;
 
     public int getWorkExperience() {
         return workExperience;

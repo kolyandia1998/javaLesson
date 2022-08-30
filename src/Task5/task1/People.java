@@ -8,10 +8,10 @@ import java.time.Month;
 import java.util.regex.Pattern;
 
 public class People {
-    private String surname;
-    private String name;
-    private String middleName;
-    private LocalDate birthDay;
+    protected String surname;
+    protected String name;
+    protected String middleName;
+    protected LocalDate birthDay;
 
 
 
