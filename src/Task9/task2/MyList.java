@@ -19,6 +19,7 @@ public class MyList<T> extends DynamicArray implements Iterator<T> {
     }
 
     public MyList(int size) {
+        super();
         this.array = new Object[size];
     }
 
@@ -28,7 +29,7 @@ public class MyList<T> extends DynamicArray implements Iterator<T> {
              arrayList.add(iterable.iterator().next());
          }
         array = arrayList.toArray();
-        length = arrayList.size();
+        int length = arrayList.size();
     }
 
     private int current = 0;
