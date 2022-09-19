@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 public class task {
     public static void main(String[] args) throws IOException {
+
         Scanner scanner = new Scanner(new File("C:\\1.txt"));
         String regex = "\\d+";
         String inputData = "";
@@ -18,6 +19,7 @@ public class task {
         while (scanner.hasNext()) {
             inputData += scanner.next() + "\n";
         }
+
         scanner.close();
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(inputData);
@@ -29,7 +31,6 @@ public class task {
         File file = new File("C:\\1.txt");
         file.delete();
         file.createNewFile();
-
         FileWriter fileWriter = new FileWriter(file);
         fileWriter.write(inputData);
         fileWriter.flush();
