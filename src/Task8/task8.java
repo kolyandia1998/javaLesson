@@ -17,7 +17,7 @@ public class task8 {
              array[i] = Math.random();
          }
 
-         dynamicArray.addRange(array);
+
          System.out.println(dynamicArray.size() + "  " + dynamicArray.get(123));
     }
 
