@@ -32,7 +32,6 @@ public class Main {
             Logs.getParent().toFile().mkdirs();
             Logs.toFile().createNewFile();
             FileWriter writer = new FileWriter(Logs.toFile());
-            originator.files = fileList;
             originator.logFiles(writer, Source, Target);
         } else if (key.equals("2")) {
             System.out.println("Введите дату восстановления в формате 'гггг-дд-ммTч-м-с'");
