@@ -11,15 +11,15 @@ public class Copy {
         if (!Target.getParent().toFile().exists()) {
             Target.getParent().toFile().mkdirs();
         }
-        Files.copy(Source, Paths.get(Target.toString() + "\\" + Source.toFile().getName()));
+        Files.copy(Source, Target);
     }
 
     private static void CopyDirectory(Path Source, Path Target) throws IOException {
         if (!Target.toFile().exists()) {
             Target.toFile().mkdirs();
         }
-        for (File file : Source.toFile().listFiles()) {
-            MakeCopy(file.toPath(), Target);
+        for (String str : Source.toFile().list()) {
+            MakeCopy(new File(Source.toFile(), str).toPath(), new File(Target.toFile(), str).toPath());
         }
     }
 
