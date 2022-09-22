@@ -1,19 +1,14 @@
 package Task12.Task2;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.lang.annotation.Target;
 import java.nio.file.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import static Task12.Task2.Copy.MakeCopy;
-import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 
-public class Originator {
+public class Originator implements FileListener {
     private String getDateTime() {
         LocalDateTime localDateTime = LocalDateTime.now();
         return localDateTime.toLocalDate() + "T" + localDateTime.toLocalTime().getHour() +
@@ -22,6 +17,15 @@ public class Originator {
     private ArrayList<File> Files = new ArrayList<>();
     private Path Back;
     private Path LogPath;
+    public void setBack(Path back) {
+        Back = back;
+    }
+    public void setLogPath(Path logPath) {
+        LogPath = logPath;
+    }
+    public void setFolder(Path folder) {
+        Folder = folder;
+    }
     private Path Folder;
     public Path getBack() {
         return Back;
@@ -41,37 +45,6 @@ public class Originator {
     public ArrayList<File> getFiles() {
         return Files;
     }
-    private static void InternalGetAllFiles(Path source, ArrayList<File> files) {
-        File[] sourceFiles = source.toFile().listFiles();
-        for (File file : sourceFiles) {
-            if (file.isFile()) {
-                files.add(file);
-            } else {
-                InternalGetAllFiles(file.toPath(), files);
-            }
-        }
-    }
-    public void AddFilesFromSource() {
-        InternalGetAllFiles(Folder, Files);
-    }
-    public void LogFiles(FileWriter writer) throws IOException, InterruptedException {
-        MakeCopy(Folder, Paths.get(Back.toString() + "\\" + Folder.toFile().getName() + "_" + getDateTime()));
-        for (File file : Files) {
-            Paths.get(file.toURI()).getParent().register(watchService, ENTRY_MODIFY);
-        }
-        WatchKey key;
-        boolean poll = true;
-        while (poll) {
-            key = watchService.take();
-            for (WatchEvent event : key.pollEvents()) {
-                MakeCopy(Folder, Paths.get(Back.toString() + "\\" + Folder.toFile().getName() + "_" + getDateTime()));
-                writer.write("Event kind:" + event.kind() + ". File affected: " + event.context() + "." + "\n");
-                writer.flush();
-            }
-            poll = key.reset();
-        }
-        writer.close();
-    }
     private void DeletedDirectory(Path Directory) {
         for (File file : Directory.toFile().listFiles()) {
             if (file.isDirectory()) {
@@ -87,6 +60,10 @@ public class Originator {
         Path FolderBackup = Paths.get(Back.toFile().listFiles(filterDate)[0].toString());
         DeletedDirectory(Folder);
         MakeCopy(FolderBackup, Folder);
+    }
+    @Override
+    public void onModified(FileEvent event) throws IOException {
+        MakeCopy(Folder, Paths.get(Back.toString() + "\\" + Folder.toFile().getName() + "_" + getDateTime()));
     }
 }
 
