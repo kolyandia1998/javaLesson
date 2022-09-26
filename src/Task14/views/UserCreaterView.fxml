@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity"
+            minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="400.0" prefWidth="624.0"
+            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2"
+            fx:controller="Task14.CreateNameController">
+    <children>
+        <TextField  fx:id="Name" prefHeight="20" prefWidth="100" layoutX="100" layoutY="65"/>
+           <Label text="Name"   prefHeight="30" prefWidth="40" layoutX="10" layoutY="60"/>
+        <TextField  fx:id="SecondName" prefHeight="30" prefWidth="100" layoutX="100" layoutY="95"/>
+           <Label text="SecondName"   prefHeight="30" prefWidth="90" layoutX="10" layoutY="90"/>
+        <DatePicker fx:id="BirthDay" prefHeight="30" prefWidth="100" layoutX="100" layoutY="125"/>
+           <Label text="Birthday"   prefHeight="30" prefWidth="90" layoutX="10" layoutY="125"/>
+        <Button fx:id="save" prefHeight="40" prefWidth="60" layoutX="220" layoutY="100" text="Save" />
+
+    </children>
+</AnchorPane>

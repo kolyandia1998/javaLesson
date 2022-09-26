@@ -1,12 +1,12 @@
 package Task14;
 
 public class ID {
-    private static long idCounter = 1;
-    public static synchronized long createID()
+    private static int idCounter = 1;
+    public static synchronized int createID()
     {
         return idCounter++;
     }
-    protected static long getID () {
+    protected static int getID () {
       return  createID();
     }
 }

@@ -4,9 +4,9 @@ import static Task14.ID.getID;
 
 public abstract class Unit {
     private ID identifier = new ID();
-    protected long id = getID();
+    public int id = getID();
 
-    protected long getId() {
+    public int getId() {
         return id;
     }
 }
