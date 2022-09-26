@@ -43,7 +43,7 @@ public class Controller {
 
         initData();
 
-        // устанавливаем тип и значение которое должно хранится в колонке
+
         idColumn.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<Users, String>("FirstName"));
         secondNameColumn.setCellValueFactory(new PropertyValueFactory<Users, String>("LastName"));
@@ -55,7 +55,6 @@ public class Controller {
         add.setOnAction(actionEvent -> {
             Parent root;
             try {
-                  CreateNameController createNameController = new CreateNameController();
 
                   root = FXMLLoader.load(getClass().getResource("views/UserCreaterView.fxml"));
                 Stage stage = new Stage();
