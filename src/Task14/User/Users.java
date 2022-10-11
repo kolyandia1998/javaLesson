@@ -1,18 +1,24 @@
 package Task14.User;
 
+import Task14.Rewards.Rewards;
 import Task14.Unit;
+import javafx.collections.ObservableArray;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
-import static Task14.ID.createID;
 
-public class Users extends Unit {
+
+public class Users extends Unit   {
+
+
+    public ArrayList<Rewards> rewards = new ArrayList<>();
     private String FirstName;
     private String LastName;
     private LocalDate BirthDay;
-    private final int Age;
+    public final int Age;
     public Users(String firstName, String lastName, LocalDate birthDay) {
      this.FirstName = firstName;
      this.LastName = lastName;
