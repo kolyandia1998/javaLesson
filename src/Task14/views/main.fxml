@@ -18,8 +18,8 @@
                   <VBox layoutX="87.0" layoutY="211.0" prefHeight="747.0" prefWidth="274.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Button fx:id="Add" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="328.0" text="Создать" />
-                        <Button fx:id="Delete" mnemonicParsing="false" onAction="#onAddClick" prefHeight="25.0" prefWidth="298.0" text="Удалить" />
-                        <Button fx:id="Edit" mnemonicParsing="false" onAction="#editClick" prefHeight="25.0" prefWidth="278.0" text="Редактировать" />
+                        <Button fx:id="Delete" mnemonicParsing="false" onAction="#onDeleteClick" prefHeight="25.0" prefWidth="298.0" text="Удалить" />
+                        <Button fx:id="Edit" mnemonicParsing="false"  onAction="#onEditClick" prefHeight="25.0" prefWidth="278.0" text="Редактировать" />
                      </children>
                   </VBox>
                </children>

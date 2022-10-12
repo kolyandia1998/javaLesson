@@ -10,11 +10,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableColumn;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -25,7 +22,7 @@ public class MainWindowController {
 
 
     private final ObservableList<Users> usersData = FXCollections.observableArrayList();
-    private final ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
+    public static  ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
 
 
     @FXML
@@ -39,9 +36,9 @@ public class MainWindowController {
     @FXML
     private Button Edit = new Button();
     @FXML
-    private TableView<Users> TableUsers;
+    private  TableView<Users> TableUsers;
     @FXML
-    private TableView<Rewards> TableRewards;
+    private   TableView<Rewards> TableRewards;
     @FXML
     private TableColumn<Users, Integer> UsersID;
     @FXML
@@ -70,12 +67,9 @@ public class MainWindowController {
         UsersSecondName.setCellValueFactory(new PropertyValueFactory<Users, String>("LastName"));
         UsersBirthday.setCellValueFactory(new PropertyValueFactory<Users, LocalDate>("BirthDay"));
         UsersAge.setCellValueFactory(new PropertyValueFactory<Users, Integer>("Age"));
-
         RewardsID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
         RewardName.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
         RewardDescription.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
-
-        /*      UsersBirthday.setCellValueFactory(new PropertyValueFactory<Users, LocalDate>("UserRewards"));*/
         TableUsers.setItems(usersData);
         TableRewards.setItems(rewardsData);
     }
@@ -84,63 +78,141 @@ public class MainWindowController {
         unitList.remove(tableView.getSelectionModel().getSelectedItem());
     }
 
+    public  Unit GetSelectedItem () {
+        if (UsersTab.isSelected()) {
+            return TableUsers.getSelectionModel().getSelectedItem();
+        }
+        else
+            return TableRewards.getSelectionModel().getSelectedItem();
+    }
 
 
 
     public void onAddClick(ActionEvent event) {
         Add.setOnAction(actionEvent -> {
-            Parent root = null;
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("views/UserObjForm.fxml"));
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.showAndWait();
-            UserCreateController controller = loader.getController();
 
-            if (controller.getModalResult()) {
-                Users user = controller.GetUser();
-                this.usersData.add(user);
-        }
-            });
-
-        Delete.setOnAction(actionEvent -> {
             if (UsersTab.isSelected()) {
-                RemoveSelected(TableUsers, usersData);
-            } else if (RewardsTab.isSelected()) {
-                RemoveSelected(TableRewards, rewardsData);
+
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("views/UserObjForm.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.showAndWait();
+                UserCreateController controller = loader.getController();
+                if (controller.getModalResult()) {
+                    Users user = controller.GetUser();
+                    this.usersData.add(user);
+                }
+
+            }
+            else if (RewardsTab.isSelected()) {
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("views/RewardsObjForm.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                stage.showAndWait();
+                RewardCreateController controller = loader.getController();
+                if (controller.getModalResult()) {
+                    Rewards reward = controller.GetReward();
+                    this.rewardsData.add(reward);
+                }
             }
 
+    });}
+
+
+
+
+    public void onEditClick(ActionEvent event) {
+        Edit.setOnAction(actionEvent -> {
+            if (UsersTab.isSelected()) {
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("views/UserObjForm.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                UserCreateController controller = loader.getController();
+                controller.SetUser((Users) GetSelectedItem());
+                stage.showAndWait();
+                if (controller.getModalResult()) {
+                    Users user = controller.GetUser();
+                    RemoveSelected(TableUsers, usersData);
+                    this.usersData.add(user);
+                }
+            }
+            else if (RewardsTab.isSelected()) {
+                Parent root = null;
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("views/RewardsObjForm.fxml"));
+                try {
+                    root = loader.load();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.initModality(Modality.WINDOW_MODAL);
+                RewardCreateController controller = loader.getController();
+                controller.SetReward((Rewards) GetSelectedItem());
+                stage.showAndWait();
+                if (controller.getModalResult()) {
+                    Rewards rewards = controller.GetReward();
+                    rewards.setID(((Rewards) GetSelectedItem()).id);
+                    RemoveSelected(TableRewards, rewardsData);
+                    rewardsData.add(rewards);
+                }
+
+            }
         });
-
-
     }
 
-    private void editClick(ActionEvent event) {
-        Edit.setOnAction(actionEvent -> {
-            Parent root = null;
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("views/UserObjForm.fxml"));
-            try {
-                root = loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initModality(Modality.WINDOW_MODAL);
-            stage.showAndWait();
-            UserCreateController controller = loader.getController();
 
-            if (controller.getModalResult()) {
-                Users user = controller.GetUser();
-                this.usersData.add(user);
+
+
+
+
+    public void onDeleteClick(ActionEvent event) {
+
+
+        Delete.setOnAction(actionEvent -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " +  " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+
+
+                if (UsersTab.isSelected()) {
+                    RemoveSelected(TableUsers, usersData);
+                } else if (RewardsTab.isSelected()) {
+                    for (Users users:usersData){
+                       if (users.rewards.contains((Rewards) GetSelectedItem()));
+                        {
+                            users.rewards.remove((Rewards) GetSelectedItem());
+                        }
+                    }
+                    RemoveSelected(TableRewards, rewardsData);
+                }
             }
+
         });
     }
 }

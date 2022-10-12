@@ -57,5 +57,9 @@ public class Users extends Unit   {
         BirthDay = birthDay;
     }
 
+    public void setID (int id) {
+        this.id = id;
+    }
+
 
 }
