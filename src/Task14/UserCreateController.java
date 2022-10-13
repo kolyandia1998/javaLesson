@@ -73,7 +73,6 @@ public class UserCreateController {
     public boolean getModalResult() {
         return ModalResult;
     }
-
     @FXML
     private void initialize() {
         RewardsID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));

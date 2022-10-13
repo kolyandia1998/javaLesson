@@ -3,8 +3,8 @@ package Task14.Rewards;
 import Task14.Unit;
 
 public class Rewards extends Unit {
-   private String Tittle;
-   private String Description;
+    private String Tittle;
+    private String Description;
 
     public Rewards(String tittle, String description) {
         Tittle = tittle;
