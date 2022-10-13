@@ -12,7 +12,7 @@
 <?import javafx.scene.control.TextArea?>
 <AnchorPane prefHeight="514.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Task14.UserCreateController">
    <children>
-      <Button fx:id="Save" layoutX="259.0" layoutY="361.0" mnemonicParsing="false" onAction="#onSaveClick" text="Сохранить" />
+      <Button fx:id="Save" layoutX="259.0" layoutY="361.0" mnemonicParsing="false" onAction="#OnSaveClick" text="Сохранить" />
       <TextArea fx:id="ID"  editable="false" layoutX="184.0" layoutY="76.0" prefHeight="25.0" prefWidth="266.0" />
       <TextField fx:id="Name" layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="266.0" />
       <TextField fx:id="SecondName" layoutX="184.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" />
@@ -27,7 +27,7 @@
       <Label layoutX="625.0" layoutY="45.0" prefHeight="17.0" prefWidth="95.0" text="Награды" />
       <ButtonBar layoutX="610.0" layoutY="386.0" prefHeight="40.0" prefWidth="162.0">
         <buttons>
-          <Button fx:id="Add" onAction="#onAddClick" mnemonicParsing="false" text="Добавить" />
+          <Button fx:id="Add" onAction="#OnAddClick" mnemonicParsing="false" text="Добавить" />
             <Button fx:id="Delete" mnemonicParsing="false" text="Удалить" />
         </buttons>
       </ButtonBar>

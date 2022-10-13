@@ -19,19 +19,13 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 public class MainWindowController {
-
-
-
-    public static void AlertWindowShow (String message) {
+    public static void AlertWindowShow(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR, message);
         alert.showAndWait();
-
     }
 
     private final ObservableList<Users> usersData = FXCollections.observableArrayList();
-    public static  ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
-
-
+    public static ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
     @FXML
     Tab UsersTab = new Tab();
     @FXML
@@ -43,9 +37,9 @@ public class MainWindowController {
     @FXML
     private Button Edit = new Button();
     @FXML
-    private  TableView<Users> TableUsers;
+    private TableView<Users> TableUsers;
     @FXML
-    private   TableView<Rewards> TableRewards;
+    private TableView<Rewards> TableRewards;
     @FXML
     private TableColumn<Users, Integer> UsersID;
     @FXML
@@ -66,7 +60,6 @@ public class MainWindowController {
     @FXML
     private TableColumn<Rewards, String> RewardDescription;
 
-
     @FXML
     private void initialize() {
         UsersID.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
@@ -77,7 +70,7 @@ public class MainWindowController {
         RewardsID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
         RewardName.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
         RewardDescription.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
-        UserRewards.setCellValueFactory(new PropertyValueFactory<Users,String>("rewardsStrId"));
+        UserRewards.setCellValueFactory(new PropertyValueFactory<Users, String>("rewardsStrId"));
         TableUsers.setItems(usersData);
         TableRewards.setItems(rewardsData);
     }
@@ -86,21 +79,15 @@ public class MainWindowController {
         unitList.remove(tableView.getSelectionModel().getSelectedItem());
     }
 
-    public  Unit GetSelectedItem () {
+    public Unit GetSelectedItem() {
         if (UsersTab.isSelected()) {
             return TableUsers.getSelectionModel().getSelectedItem();
-        }
-        else
+        } else
             return TableRewards.getSelectionModel().getSelectedItem();
     }
-
-
-
-    public void onAddClick(ActionEvent event) {
+    public void OnAddClick(ActionEvent event) {
         Add.setOnAction(actionEvent -> {
-
             if (UsersTab.isSelected()) {
-
                 Parent root = null;
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("views/UserObjForm.fxml"));
@@ -118,9 +105,7 @@ public class MainWindowController {
                     Users user = controller.GetUser();
                     this.usersData.add(user);
                 }
-
-            }
-            else if (RewardsTab.isSelected()) {
+            } else if (RewardsTab.isSelected()) {
                 Parent root = null;
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("views/RewardsObjForm.fxml"));
@@ -139,13 +124,9 @@ public class MainWindowController {
                     this.rewardsData.add(reward);
                 }
             }
-
-    });}
-
-
-
-
-    public void onEditClick(ActionEvent event) {
+        });
+    }
+    public void OnEditClick(ActionEvent event) {
         Edit.setOnAction(actionEvent -> {
             if (UsersTab.isSelected()) {
                 Parent root = null;
@@ -167,8 +148,7 @@ public class MainWindowController {
                     RemoveSelected(TableUsers, usersData);
                     this.usersData.add(user);
                 }
-            }
-            else if (RewardsTab.isSelected()) {
+            } else if (RewardsTab.isSelected()) {
                 Parent root = null;
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(getClass().getResource("views/RewardsObjForm.fxml"));
@@ -189,30 +169,19 @@ public class MainWindowController {
                     RemoveSelected(TableRewards, rewardsData);
                     rewardsData.add(rewards);
                 }
-
             }
         });
     }
-
-
-
-
-
-
-    public void onDeleteClick(ActionEvent event) {
-
-
+    public void OnDeleteClick(ActionEvent event) {
         Delete.setOnAction(actionEvent -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " +  " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + " ?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.showAndWait();
             if (alert.getResult() == ButtonType.YES) {
-
-
                 if (UsersTab.isSelected()) {
                     RemoveSelected(TableUsers, usersData);
                 } else if (RewardsTab.isSelected()) {
-                    for (Users users:usersData){
-                       if (users.rewards.contains((Rewards) GetSelectedItem()));
+                    for (Users users : usersData) {
+                        if (users.rewards.contains((Rewards) GetSelectedItem())) ;
                         {
                             users.rewards.remove((Rewards) GetSelectedItem());
                         }
@@ -220,7 +189,6 @@ public class MainWindowController {
                     RemoveSelected(TableRewards, rewardsData);
                 }
             }
-
         });
     }
 }

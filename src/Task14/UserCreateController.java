@@ -25,7 +25,7 @@ public class UserCreateController {
     private final ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
     @FXML
     private TableView<Rewards> TableRewards;
-    public TextArea ID ;
+    public TextArea ID;
     public Button Save;
     public TextField Name;
     public TextField SecondName;
@@ -36,38 +36,31 @@ public class UserCreateController {
     public Button Add;
     public Button Delete;
     public DatePicker Birthday;
+    private Boolean ModalResult = false;
 
-    private Boolean modalResult = false;
-    public void onSaveClick(ActionEvent event) {
-        if (CheckTextField(Name) && CheckTextField(SecondName) && (LocalDate.now().compareTo( Birthday.getValue()) <= 150 && LocalDate.now().compareTo( Birthday.getValue()) >=0)) {
-
-            this.modalResult = true; // ставим результат модального окна на true
-            // закрываем окно к которому привязана кнопка
+    public void OnSaveClick(ActionEvent event) {
+        if (CheckTextField(Name) && CheckTextField(SecondName) && (LocalDate.now().compareTo(Birthday.getValue()) <= 150 && LocalDate.now().compareTo(Birthday.getValue()) >= 0)) {
+            this.ModalResult = true;
             ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        }
-        else {
+        } else {
             AlertWindowShow("Имя и фамилия должны быть < 50 символов и > 0, а возраст не более 150 лет");
         }
     }
 
-    private boolean CheckTextField (TextField textField) {
-        if ( textField.getText().length() > 0 && textField.getText().length() <= 50) {
+    public static boolean CheckTextField(TextField textField) {
+        if (textField.getText().length() > 0 && textField.getText().length() <= 50) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 
-
-
-    public Users GetUser () {
-          Users user = new Users(Name.getText(),SecondName.getText(),Birthday.getValue());
+    public Users GetUser() {
+        Users user = new Users(Name.getText(), SecondName.getText(), Birthday.getValue());
         user.rewards.addAll(rewardsData);
         user.setRewardsStr();
-          return user;
+        return user;
     }
 
-
-    public void SetUser (Users user) {
+    public void SetUser(Users user) {
         Name.setText(user.getFirstName());
         SecondName.setText(user.getLastName());
         Birthday.setValue(user.getBirthDay());
@@ -75,26 +68,21 @@ public class UserCreateController {
         Age.setText(String.valueOf(user.Age));
         rewardsData.addAll(user.rewards);
         user.setRewardsStr();
-
-
     }
 
-
     public boolean getModalResult() {
-        return modalResult;
+        return ModalResult;
     }
 
     @FXML
     private void initialize() {
-
         RewardsID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
         RewardName.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
         RewardDescription.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
         TableRewards.setItems(rewardsData);
     }
 
-
-    public void onAddClick(ActionEvent event) {
+    public void OnAddClick(ActionEvent event) {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("views/RewardsListForAdd.fxml"));
@@ -108,15 +96,14 @@ public class UserCreateController {
         stage.initModality(Modality.WINDOW_MODAL);
         stage.showAndWait();
         ReawardListController reawardListController = loader.getController();
-        if (reawardListController.getModalResult()) {
+        if (reawardListController.GetModalResult()) {
             Rewards reward = reawardListController.GetReward();
-              if (rewardsData.contains(reward)){
-                  Alert alert = new Alert(Alert.AlertType.ERROR, "Пользователь уже имеет данную награду!");
-                  alert.showAndWait();
-              }
-              else {
-                  this.rewardsData.add(reward);
-              }
+            if (rewardsData.contains(reward)) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Пользователь уже имеет данную награду!");
+                alert.showAndWait();
+            } else {
+                this.rewardsData.add(reward);
+            }
         }
 
     }

@@ -14,6 +14,6 @@
                           <TableColumn fx:id="RewardDescription" prefWidth="327.0" text="Описание" />
                       </columns>
                   </TableView>
-      <Button fx:id="Add" layoutX="777.0" onAction="#onAddClick" layoutY="316.0" mnemonicParsing="false" text="Добавить" />
+      <Button fx:id="Add" layoutX="777.0" onAction="#OnAddClick" layoutY="316.0" mnemonicParsing="false" text="Добавить" />
     </children>
 </AnchorPane>
