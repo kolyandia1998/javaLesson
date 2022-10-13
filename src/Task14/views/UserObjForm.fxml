@@ -13,10 +13,10 @@
 <AnchorPane prefHeight="514.0" prefWidth="837.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Task14.UserCreateController">
    <children>
       <Button fx:id="Save" layoutX="259.0" layoutY="361.0" mnemonicParsing="false" onAction="#onSaveClick" text="Сохранить" />
-      <TextArea fx:id="ID"   layoutX="184.0" layoutY="76.0" prefHeight="25.0" prefWidth="266.0" />
+      <TextArea fx:id="ID"  editable="false" layoutX="184.0" layoutY="76.0" prefHeight="25.0" prefWidth="266.0" />
       <TextField fx:id="Name" layoutX="184.0" layoutY="123.0" prefHeight="25.0" prefWidth="266.0" />
       <TextField fx:id="SecondName" layoutX="184.0" layoutY="168.0" prefHeight="25.0" prefWidth="266.0" />
-      <TextField fx:id="Age" layoutX="184.0" layoutY="245.0" prefHeight="25.0" prefWidth="266.0" />
+      <TextField fx:id="Age" editable="false" layoutX="184.0" layoutY="245.0" prefHeight="25.0" prefWidth="266.0" />
       <TableView fx:id="TableRewards" layoutX="532.0" layoutY="76.0" prefHeight="304.0" prefWidth="280.0">
         <columns>
           <TableColumn fx:id="RewardsID" prefWidth="75.0" text="ID" />

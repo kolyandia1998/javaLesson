@@ -18,6 +18,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static Task14.MainWindowController.AlertWindowShow;
+
 
 public class UserCreateController {
     private final ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
@@ -37,18 +39,31 @@ public class UserCreateController {
 
     private Boolean modalResult = false;
     public void onSaveClick(ActionEvent event) {
-        this.modalResult = true; // ставим результат модального окна на true
-        // закрываем окно к которому привязана кнопка
-        ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
+        if (CheckTextField(Name) && CheckTextField(SecondName) && (LocalDate.now().compareTo( Birthday.getValue()) <= 150 && LocalDate.now().compareTo( Birthday.getValue()) >=0)) {
+
+            this.modalResult = true; // ставим результат модального окна на true
+            // закрываем окно к которому привязана кнопка
+            ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+        }
+        else {
+            AlertWindowShow("Имя и фамилия должны быть < 50 символов и > 0, а возраст не более 150 лет");
+        }
+    }
+
+    private boolean CheckTextField (TextField textField) {
+        if ( textField.getText().length() > 0 && textField.getText().length() <= 50) {
+            return true;
+        }
+        else return false;
     }
 
 
 
-
     public Users GetUser () {
-          Users result = new Users(Name.getText(),SecondName.getText(),Birthday.getValue());
-        result.rewards.addAll(rewardsData);
-          return result;
+          Users user = new Users(Name.getText(),SecondName.getText(),Birthday.getValue());
+        user.rewards.addAll(rewardsData);
+        user.setRewardsStr();
+          return user;
     }
 
 
@@ -59,6 +74,9 @@ public class UserCreateController {
         ID.setText(String.valueOf(user.getId()));
         Age.setText(String.valueOf(user.Age));
         rewardsData.addAll(user.rewards);
+        user.setRewardsStr();
+
+
     }
 
 
@@ -92,7 +110,13 @@ public class UserCreateController {
         ReawardListController reawardListController = loader.getController();
         if (reawardListController.getModalResult()) {
             Rewards reward = reawardListController.GetReward();
-            this.rewardsData.add(reward);
+              if (rewardsData.contains(reward)){
+                  Alert alert = new Alert(Alert.AlertType.ERROR, "Пользователь уже имеет данную награду!");
+                  alert.showAndWait();
+              }
+              else {
+                  this.rewardsData.add(reward);
+              }
         }
 
     }

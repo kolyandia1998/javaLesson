@@ -21,6 +21,13 @@ import java.time.LocalDate;
 public class MainWindowController {
 
 
+
+    public static void AlertWindowShow (String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message);
+        alert.showAndWait();
+
+    }
+
     private final ObservableList<Users> usersData = FXCollections.observableArrayList();
     public static  ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
 
@@ -70,6 +77,7 @@ public class MainWindowController {
         RewardsID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
         RewardName.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
         RewardDescription.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
+        UserRewards.setCellValueFactory(new PropertyValueFactory<Users,String>("rewardsStrId"));
         TableUsers.setItems(usersData);
         TableRewards.setItems(rewardsData);
     }

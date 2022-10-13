@@ -1,20 +1,36 @@
 package Task14.User;
-
 import Task14.Rewards.Rewards;
 import Task14.Unit;
 import javafx.collections.ObservableArray;
-
+import javafx.fxml.FXML;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.UUID;
-
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class Users extends Unit   {
 
 
-    public ArrayList<Rewards> rewards = new ArrayList<>();
+    public  ArrayList<Rewards> rewards = new ArrayList<>();
+
+    public String rewardsStrId ;
+
+    public String getRewardsStrId() {
+        return rewardsStrId;
+    }
+
+    public void setRewardsStr () {
+        StringBuilder stringBuilder = new StringBuilder();
+
+
+        for (Rewards reward:rewards){
+            stringBuilder.append(reward.getId());
+            stringBuilder.append('|');
+        }
+        rewardsStrId = stringBuilder.toString();
+
+    }
+
     private String FirstName;
     private String LastName;
     private LocalDate BirthDay;

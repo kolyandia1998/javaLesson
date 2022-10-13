@@ -52,6 +52,7 @@ public class ReawardListController {
 
     public void onAddClick(ActionEvent event) {
         Add.setOnAction(actionEvent -> {
+
             this.modalResult = true; // ставим результат модального окна на true
             // закрываем окно к которому привязана кнопка
             ((Stage)((Node)event.getSource()).getScene().getWindow()).close();
