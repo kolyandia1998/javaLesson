@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<AnchorPane prefHeight="650.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Task14v1.UserForm">
+   <children>
+      <VBox layoutX="206.0" layoutY="105.0" prefHeight="177.0" prefWidth="302.0">
+         <children>
+            <TextField fx:id="NameField" prefHeight="48.0" prefWidth="302.0" />
+            <TextField fx:id="SecondNameField" prefHeight="42.0" prefWidth="302.0" />
+            <DatePicker fx:id="BirthdayField" prefHeight="38.0" prefWidth="302.0" />
+            <TextField fx:id="AgeField" prefHeight="47.0" prefWidth="302.0" />
+         </children>
+      </VBox>
+      <Label layoutX="77.0" layoutY="118.0" text="Имя" />
+      <Label layoutX="77.0" layoutY="151.0" prefHeight="27.0" prefWidth="60.0" text="Фамилия" />
+      <Label layoutX="77.0" layoutY="187.0" prefHeight="27.0" prefWidth="106.0" text="Дата Рождения" />
+      <Label layoutX="77.0" layoutY="231.0" prefHeight="27.0" prefWidth="106.0" text="Возраст" />
+      <Button fx:id="Save" layoutX="331.0" layoutY="509.0" mnemonicParsing="false" onAction="#OnSaveAction" text="Сохранить" />
+      <Pane layoutX="569.0" layoutY="87.0" prefHeight="362.0" prefWidth="290.0">
+         <children>
+            <TableView fx:id="TableRewards" prefHeight="281.0" prefWidth="290.0">
+              <columns>
+                <TableColumn fx:id="RewardID" text="ID" />
+                <TableColumn fx:id="RewardName" prefWidth="209.0" text="Наименование" />
+              </columns>
+            </TableView>
+            <HBox layoutX="69.0" layoutY="318.0" prefHeight="30.0" prefWidth="153.0">
+               <children>
+                  <Button fx:id="Add" mnemonicParsing="false" onAction="#OnAddActon" text="Добавить" />
+                  <Button fx:id="Delete" mnemonicParsing="false" onAction="#OnDeletAction" prefHeight="30.0" prefWidth="75.0" text="Удалить" />
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

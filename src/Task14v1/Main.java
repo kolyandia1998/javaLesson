@@ -1,4 +1,4 @@
-package Task14;
+package Task14v1;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,13 +6,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("views/main.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("MainWindow.fxml"));
         primaryStage.setTitle("Users List");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
