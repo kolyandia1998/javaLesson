@@ -81,7 +81,7 @@ public class UserCreateController {
         TableRewards.setItems(rewardsData);
     }
 
-    public void OnAddClick(ActionEvent event) {
+ /*   public void OnAddClick(ActionEvent event) {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("views/RewardsListForAdd.fxml"));
@@ -103,7 +103,7 @@ public class UserCreateController {
             } else {
                 this.rewardsData.add(reward);
             }
-        }
+        }*/
 
-    }
+ /*   }*/
 }

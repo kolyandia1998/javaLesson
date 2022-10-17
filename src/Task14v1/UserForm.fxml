@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="650.0" prefWidth="909.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Task14v1.UserForm">
    <children>
       <VBox layoutX="206.0" layoutY="105.0" prefHeight="177.0" prefWidth="302.0">
@@ -38,7 +37,7 @@
             <HBox layoutX="69.0" layoutY="318.0" prefHeight="30.0" prefWidth="153.0">
                <children>
                   <Button fx:id="Add" mnemonicParsing="false" onAction="#OnAddActon" text="Добавить" />
-                  <Button fx:id="Delete" mnemonicParsing="false" onAction="#OnDeletAction" prefHeight="30.0" prefWidth="75.0" text="Удалить" />
+                  <Button fx:id="Delete" mnemonicParsing="false" onAction="#OnDeleteAction" prefHeight="30.0" prefWidth="76.0" text="Удалить" />
                </children>
             </HBox>
          </children>

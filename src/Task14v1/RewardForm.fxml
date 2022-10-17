@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="672.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Task14v1.RewardsForm">
+   <children>
+      <TextField fx:id="Name"  layoutX="363.0" layoutY="139.0" prefHeight="26.0" prefWidth="268.0" />
+      <TextArea fx:id="Description"  layoutX="363.0" layoutY="205.0" prefHeight="200.0" prefWidth="268.0" />
+      <Label layoutX="199.0" layoutY="143.0" prefHeight="18.0" prefWidth="115.0" text="Наименование" />
+      <Label layoutX="199.0" layoutY="211.0" prefHeight="18.0" prefWidth="115.0" text="Описание" />
+      <Button fx:id="Save" layoutX="424.0" layoutY="521.0" mnemonicParsing="false" onAction="#OnSave" prefHeight="30.0" prefWidth="133.0" text="Сохранить" />
+   </children>
+</AnchorPane>
