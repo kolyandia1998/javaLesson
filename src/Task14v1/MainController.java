@@ -1,8 +1,6 @@
 package Task14v1;
 
-import Task14.Rewards.Rewards;
-import Task14.Unit;
-import Task14.User.Users;
+import Task14v1.User.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,9 +23,8 @@ public class MainController {
     public Button Delete;
     @FXML
     public Button Edit;
-    private  ObservableList<Users> usersData = FXCollections.observableArrayList();
-    public static   ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
-
+    private ObservableList<Users> usersData = FXCollections.observableArrayList();
+    public static ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
 
     @FXML
     public Tab UsersTab;
@@ -41,7 +38,7 @@ public class MainController {
     public TableColumn<Users, String> UserSecondName;
 
     @FXML
-    public TableColumn<Users,LocalDate>  UserBirthday;
+    public TableColumn<Users, LocalDate> UserBirthday;
 
     @FXML
     public TableColumn<Users, Integer> UserAge;
@@ -56,9 +53,7 @@ public class MainController {
     @FXML
     private TableView<Users> TableUsers;
     @FXML
-    private  TableView<Rewards> TableRewards;
-
-
+    private TableView<Rewards> TableRewards;
 
     @FXML
     private void initialize() {
@@ -80,7 +75,7 @@ public class MainController {
         alert.showAndWait();
     }
 
-    private void CreateModalWindow ( String resourceXml,IControllerFabric ModalController) {
+    private void CreateModalWindow(String resourceXml, IControllerFabric ModalController) {
         Parent root = null;
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource(resourceXml));
@@ -91,51 +86,46 @@ public class MainController {
         }
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
-        stage.initModality(Modality.WINDOW_MODAL);
+        stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
-         ModalController  = loader.getController();
-         Unit unit =  ModalController.GetUnit();
-         if (UsersTab.isSelected()) {
-             this.usersData.add( (Users) unit);
-         }
-         else if (RewardsTab.isSelected()) {
-             rewardsData.add((Rewards) unit);
-         }
+        ModalController = loader.getController();
+        if (ModalController.GetModalResult()) {
+            Unit unit = ModalController.GetUnit();
+            if (UsersTab.isSelected()) {
+                this.usersData.add((Users) unit);
+            } else if (RewardsTab.isSelected()) {
+                rewardsData.add((Rewards) unit);
+            }
+        }
     }
 
-      private void CreateUnitForm () {
-           if (UsersTab.isSelected()) {
-               CreateModalWindow("UserForm.fxml",new UserForm());
-           }
-           else if (RewardsTab.isSelected()) {
-               CreateModalWindow("RewardForm.fxml",new RewardsForm());
-           }
-      }
+    private void CreateUnitForm() {
+        if (UsersTab.isSelected()) {
+            CreateModalWindow("UserForm.fxml", new UserForm());
+        } else if (RewardsTab.isSelected()) {
+            CreateModalWindow("RewardForm.fxml", new RewardsForm());
+        }
+    }
+
     public void OnAddAction(ActionEvent event) {
-          CreateUnitForm();
+        CreateUnitForm();
     }
 
     public void OnDeleteAction(ActionEvent event) {
-
         if (UsersTab.isSelected()) {
-            usersData.remove (TableUsers.getSelectionModel().getSelectedItem());
+            usersData.remove(TableUsers.getSelectionModel().getSelectedItem());
             TableUsers.refresh();
-        }
-        else if (RewardsTab.isSelected()) {
-            rewardsData.remove (TableRewards.getSelectionModel().getSelectedItem());
+        } else if (RewardsTab.isSelected()) {
+            for (Users user : usersData) {
+                if (user.rewards.contains(TableRewards.getSelectionModel().getSelectedItem()))
+                    user.rewards.remove(TableRewards.getSelectionModel().getSelectedItem());
+            }
+            rewardsData.remove(TableRewards.getSelectionModel().getSelectedItem());
             TableRewards.refresh();
         }
-
     }
 
-
-
-
-
-
-
-
-    public void OnEditAction(ActionEvent event)  {
+    public void OnEditAction(ActionEvent event) {
         if (UsersTab.isSelected()) {
             String resourceXml = "UserForm.fxml";
             Parent root = null;
@@ -158,14 +148,13 @@ public class MainController {
                 usersData.get(usersData.indexOf(TableUsers.getSelectionModel().getSelectedItem())).setFirstName(users.getFirstName());
                 usersData.get(usersData.indexOf(TableUsers.getSelectionModel().getSelectedItem())).setLastName(users.getLastName());
                 usersData.get(usersData.indexOf(TableUsers.getSelectionModel().getSelectedItem())).setBirthDay(users.getBirthDay());
+                usersData.get(usersData.indexOf(TableUsers.getSelectionModel().getSelectedItem())).SetAge();
+                usersData.get(usersData.indexOf(TableUsers.getSelectionModel().getSelectedItem())).setRewards(users.rewards);
                 TableUsers.refresh();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 AlertWindowShow("Не выбран объект");
             }
-        }
-        else if (RewardsTab.isSelected()) {
-
+        } else if (RewardsTab.isSelected()) {
             String resourceXml = "RewardForm.fxml";
             Parent root = null;
             FXMLLoader loader = new FXMLLoader();
@@ -187,13 +176,9 @@ public class MainController {
                 rewardsData.get(rewardsData.indexOf(TableRewards.getSelectionModel().getSelectedItem())).setTittle(rewards.getTittle());
                 rewardsData.get(rewardsData.indexOf(TableRewards.getSelectionModel().getSelectedItem())).setDescription(rewards.getDescription());
                 TableRewards.refresh();
-            }
-            catch (RuntimeException e) {
+            } catch (RuntimeException e) {
                 AlertWindowShow("Не выбран объект");
             }
-
         }
-
-
     }
 }

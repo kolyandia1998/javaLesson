@@ -1,6 +1,6 @@
-package Task14.Rewards;
+package Task14v1;
 
-import Task14.Unit;
+import Task14v1.Unit;
 
 public class Rewards extends Unit {
     private String Tittle;

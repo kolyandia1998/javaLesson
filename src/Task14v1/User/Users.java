@@ -1,14 +1,10 @@
-package Task14.User;
+package Task14v1.User;
 
-import Task14.Rewards.Rewards;
-import Task14.Unit;
-import javafx.collections.ObservableArray;
-import javafx.fxml.FXML;
+import Task14v1.Rewards;
+import Task14v1.Unit;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.util.stream.Collectors;
-
 
 public class Users extends Unit {
     public ArrayList<Rewards> rewards = new ArrayList<>();
@@ -27,7 +23,7 @@ public class Users extends Unit {
     private String FirstName;
     private String LastName;
     private LocalDate BirthDay;
-    public final int Age;
+    public int Age;
 
     public Users(String firstName, String lastName, LocalDate birthDay) {
         this.FirstName = firstName;
@@ -36,9 +32,21 @@ public class Users extends Unit {
         this.Age = GetAge();
     }
 
-    private int GetAge() {
-        return LocalDate.now().compareTo(BirthDay);
+
+    public void setRewards (ArrayList<Rewards> rewards) {
+        this.rewards=rewards;
     }
+
+    public int GetAge() {
+        return
+                LocalDate.now().getYear() - BirthDay.getYear();
+    }
+
+    public void SetAge () {
+        this.Age = GetAge();
+    }
+
+
 
     public String getFirstName() {
         return FirstName;
