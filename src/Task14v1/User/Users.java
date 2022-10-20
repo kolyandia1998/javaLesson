@@ -2,11 +2,12 @@ package Task14v1.User;
 
 import Task14v1.Rewards;
 import Task14v1.Unit;
+import javafx.collections.ObservableArray;
 
 import java.time.LocalDate;
 import java.util.*;
 
-public class Users extends Unit {
+public class Users extends Unit  {
     public ArrayList<Rewards> rewards = new ArrayList<>();
     public String rewardsStrId;
     public String getRewardsStrId() {
