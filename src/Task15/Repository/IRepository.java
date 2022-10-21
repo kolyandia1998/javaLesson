@@ -7,11 +7,17 @@ import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 public interface IRepository {
-    public void AddUser(Users user);
-    public void RemoveUnit(Users user);
-    public void AddReward(Rewards reward);
-    public void RemoveReward(Rewards reward);
+    void AddUser(Users user);
+    void AddReward(Rewards reward);
+    boolean RemoveUser(Integer ID);
+    boolean RemoveReward(Integer ID);
     ObservableList<Users> getUsersRepository();
-
     ObservableList<Rewards> getRewardsRepository();
+    boolean RewardUser ( Integer userID, Integer rewardID);
+    boolean UpdateUser (Users user);
+    boolean UpdateReward (Rewards reward);
+    boolean DeleteRewardFromUser (Integer userID, Integer rewardID);
+
+    Users GetUserFromID(Integer userID);
+    Rewards GetRewardFromID(Integer rewardID);
 }

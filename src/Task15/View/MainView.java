@@ -2,9 +2,11 @@ package Task15.View;
 
 import Task14v1.Rewards;
 import Task14v1.User.Users;
+import Task15.Controllers.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -71,7 +73,73 @@ public class MainView {
         return splitPane;
     }
 
-    public void startForm() {
+    private void OnAddAction(Controller listener) {
+        add.setOnAction(event -> {
+            if (users.isSelected()) {
+                UserForm userForm = new UserForm();
+                userForm.startForm(listener);
+                userTable.refresh();
+            } else if (rewards.isSelected()) {
+                RewardForm rewardForm = new RewardForm();
+                rewardForm.startForm(listener);
+                rewardTable.refresh();
+            }
+        });
+    }
+
+    private void OnDeleteAction(Controller controller) {
+        delete.setOnAction(event -> {
+                    if (users.isSelected()) {
+                        Users selectedUser = userTable.getSelectionModel().getSelectedItem();
+                        if (selectedUser != null) {
+                            controller.DeleteUser(selectedUser.getId());
+                            userTable.refresh();
+                        }
+                    } else if (rewards.isSelected()) {
+                        Rewards selectedReward = rewardTable.getSelectionModel().getSelectedItem();
+                        if (selectedReward != null) {
+                            controller.DeleteReward(selectedReward.getId());
+                            rewardTable.refresh();
+                        }
+                    }
+                }
+        );
+    }
+
+    private void OnEditAction(Controller controller) {
+        edit.setOnAction(event -> {
+            if (users.isSelected()) {
+                Users selectedUser = userTable.getSelectionModel().getSelectedItem();
+                UserForm userForm = new UserForm(controller.GetUserFromID(selectedUser.getId()));
+                userForm.startForm(controller);
+                userTable.refresh();
+            } else if (rewards.isSelected()) {
+                Rewards selectedReward = rewardTable.getSelectionModel().getSelectedItem();
+                RewardForm rewardForm = new RewardForm(controller.GetRewardFromID(selectedReward.getId()));
+                rewardForm.startForm(controller);
+                rewardTable.refresh();
+            }
+        });
+    }
+
+    private void InitializeTable(Controller controller) {
+        userID.setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
+        userName.setCellValueFactory(new PropertyValueFactory<Users, String>("FirstName"));
+        userSecondName.setCellValueFactory(new PropertyValueFactory<Users, String>("LastName"));
+        userBirthday.setCellValueFactory(new PropertyValueFactory<Users, LocalDate>("BirthDay"));
+        userAge.setCellValueFactory(new PropertyValueFactory<Users, Integer>("Age"));
+        rewardID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
+        rewardTittle.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
+        rewardDescription.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
+        rewardTable.setItems(controller.GetRewardDataFromRepository());
+        userTable.setItems(controller.GetUserDataFromRepository());
+    }
+
+    public void startForm(Controller controller) {
+        OnEditAction(controller);
+        OnDeleteAction(controller);
+        OnAddAction(controller);
+        InitializeTable(controller);
         SplitPane splitPane = splitPane();
         Scene scene = new Scene(splitPane, 700, 700);
         Stage stage = new Stage();
@@ -80,52 +148,5 @@ public class MainView {
         stage.setTitle("Odant");
         stage.getIcons().add(icon);
         stage.show();
-    }
-
-    public TableView<Users> getUserTable() {
-        return userTable;
-    }
-    public TableView<Rewards> getRewardTable() {
-        return rewardTable;
-    }
-    public TableColumn<Users, String> getUserName() {
-        return userName;
-    }
-    public TableColumn<Users, String> getUserSecondName() {
-        return userSecondName;
-    }
-    public TableColumn<Users, Integer> getUserAge() {
-        return userAge;
-    }
-    public TableColumn<Users, Integer> getUserID() {
-        return userID;
-    }
-    public TableColumn<Users, LocalDate> getUserBirthday() {
-        return userBirthday;
-    }
-    public TableColumn<Rewards, Integer> getRewardID() {
-        return rewardID;
-    }
-    public TableColumn<Rewards, String> getRewardTittle() {
-        return rewardTittle;
-    }
-    public TableColumn<Rewards, String> getRewardDescription() {
-        return rewardDescription;
-    }
-
-    public Tab getRewards() {
-        return rewards;
-    }
-    public Button getAdd() {
-        return add;
-    }
-    public Tab getUsers() {
-        return users;
-    }
-    public Button getDelete() {
-        return delete;
-    }
-    public Button getEdit() {
-        return edit;
     }
 }

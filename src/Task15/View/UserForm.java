@@ -1,19 +1,40 @@
 package Task15.View;
 
 import Task14v1.Rewards;
+import Task14v1.User.Users;
+import Task15.Controllers.Controller;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+
+import java.time.LocalDate;
 public class UserForm {
+
+    public UserForm() {
+    }
+    public UserForm(Users users) {
+        userName.setText(users.getFirstName());
+        userSecondName.setText(users.getLastName());
+        userBirthday.setValue(users.getBirthDay());
+        userID.setText(String.valueOf(users.getId()));
+        initialize(users);
+    }
+
+    private TextField userID = new TextField();
     private TextField userName = new TextField();
     private TextField userSecondName = new TextField();
     private DatePicker userBirthday = new DatePicker();
 
+    private Label userIDLabel = new Label("ID");
     private Label userNameLabel = new Label("Имя");
     private Label userSecondNameLabel = new Label("Фамилия");
     private Label userBirthdayLabel = new Label("Дата рождения");
@@ -29,9 +50,16 @@ public class UserForm {
     private Button add = new Button("Добавить");
     private Button delete = new Button("Удалить");
 
-    private HBox hBox = new HBox(add,delete);
+    private HBox hBox = new HBox(add, delete);
 
     private AnchorPane createUserForm() {
+        userID.setVisible(false);
+        userIDLabel.setVisible(false);
+        userID.setLayoutX(180);
+        userID.setLayoutY(200);
+        userIDLabel.setLayoutX(70);
+        userIDLabel.setLayoutY(200);
+        userID.setEditable(false);
         userName.setLayoutX(180);
         userName.setLayoutY(240);
         userNameLabel.setLayoutY(240);
@@ -46,7 +74,6 @@ public class UserForm {
         userBirthdayLabel.setLayoutX(70);
         save.setLayoutX(300);
         save.setLayoutY(500);
-
         rewardID.setText("ID");
         rewardTittle.setText("Наименование");
         rewardsTable.getColumns().addAll(rewardID, rewardTittle);
@@ -54,66 +81,73 @@ public class UserForm {
         rewardsTable.setLayoutX(400);
         rewardsTable.setLayoutY(200);
         userBirthday.setEditable(false);
-
         add.setLayoutX(430);
         add.setLayoutY(460);
         delete.setLayoutY(460);
         delete.setLayoutX(500);
         save.setLayoutX(330);
         save.setLayoutY(550);
-
-
-        anchorPane.getChildren().addAll(userName, userNameLabel, userSecondName, userSecondNameLabel, userBirthday, userBirthdayLabel, rewardsTable
-        ,add,delete,save);
+        anchorPane.getChildren().addAll(userID, userIDLabel, userName, userNameLabel, userSecondName, userSecondNameLabel, userBirthday, userBirthdayLabel, rewardsTable
+                , add, delete, save);
         return anchorPane;
     }
+    public static void AlertWindowShow(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, message);
+        alert.showAndWait();
+    }
 
-    public TextField getUserName() {
-        return userName;
+    private ObservableList<Rewards> rewardsData = FXCollections.observableArrayList();
+
+    private void initialize(Users user) {
+        rewardsData.addAll(user.rewards);
+        rewardID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
+        rewardTittle.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
+        rewardsTable.setItems(rewardsData);
     }
-    public TextField getUserSecondName() {
-        return userSecondName;
+
+    private void OnSaveAction(Controller controller) {
+        save.setOnAction(event -> {
+                    if (userBirthday.getValue() == null || LocalDate.now().compareTo(userBirthday.getValue()) < 0) {
+                        AlertWindowShow("Заполните дату рождения");
+                    } else {
+                        Users user = new Users(userName.getText(), userSecondName.getText(), userBirthday.getValue());
+                        user.rewards.addAll(rewardsTable.getItems());
+                        if (userID.getText().length() > 0) {
+                            user.setID(Integer.parseInt(userID.getText()));
+                            controller.UpdateUser(user);
+                        } else {
+                            controller.AddUser(user);
+                        }
+                        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
+                    }
+                }
+        );
     }
-    public DatePicker getUserBirthday() {
-        return userBirthday;
+
+    private void OnAddAction(Controller controller) {
+        add.setOnAction(event -> {
+            RewardsList rewardsList = new RewardsList();
+            rewardsList.startForm(controller, rewardsData);
+            rewardID.setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
+            rewardTittle.setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
+            rewardsTable.setItems(rewardsData);
+            rewardsTable.refresh();
+        });
     }
-    public Label getUserNameLabel() {
-        return userNameLabel;
+
+    private void OnDeleteAction(Controller controller) {
+        delete.setOnAction(event -> {
+            Rewards selectedReward = rewardsTable.getSelectionModel().getSelectedItem();
+            rewardsData.remove(selectedReward);
+            controller.DeleteRewardFromUser(Integer.parseInt(userID.getText()), selectedReward.getId());
+            rewardsTable.refresh();
+        });
     }
-    public Label getUserSecondNameLabel() {
-        return userSecondNameLabel;
-    }
-    public Label getUserBirthdayLabel() {
-        return userBirthdayLabel;
-    }
-    public Button getSave() {
-        return save;
-    }
-    public AnchorPane getAnchorPane() {
-        return anchorPane;
-    }
-    public TableView<Rewards> getRewardsTable() {
-        return rewardsTable;
-    }
-    public TableColumn<Rewards, Integer> getRewardID() {
-        return rewardID;
-    }
-    public TableColumn<Rewards, String> getRewardTittle() {
-        return rewardTittle;
-    }
-    public Button getAdd() {
-        return add;
-    }
-    public Button getDelete() {
-        return delete;
-    }
-    public HBox gethBox() {
-        return hBox;
-    }
-    public void startForm(EventHandler eventSave,EventHandler eventAdd, EventHandler eventDelet ) {
-        save.setOnAction(eventSave);
-        delete.setOnAction(eventDelet);
-        add.setOnAction(eventAdd);
+
+    public void startForm(Controller controller) {
+        OnDeleteAction(controller);
+        OnAddAction(controller);
+        OnSaveAction(controller);
         Scene scene = new Scene(createUserForm(), 700, 700);
         Stage stage = new Stage();
         stage.setScene(scene);

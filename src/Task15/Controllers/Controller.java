@@ -2,6 +2,7 @@ package Task15.Controllers;
 
 import Task14v1.Rewards;
 import Task14v1.User.Users;
+import Task15.Repository.IRepository;
 import Task15.Repository.Repository;
 import Task15.View.MainView;
 import Task15.View.RewardForm;
@@ -18,15 +19,102 @@ import java.time.LocalDate;
 
 public class Controller {
 
-    private MainView mainView;
+    private IRepository repository = new Repository();
 
-    private Repository repository = new Repository();
-
-    public Controller(MainView mainView) {
-        this.mainView = mainView;
+    public ObservableList<Users> GetUserDataFromRepository() {
+        return repository.getUsersRepository();
+    }
+    public ObservableList<Rewards> GetRewardDataFromRepository() {
+        return repository.getRewardsRepository();
     }
 
-    private void setTableData() {
+    public boolean AddUser(Users user) {
+        try {
+            repository.AddUser(user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean AddReward(Rewards reward) {
+        try {
+            repository.AddReward(reward);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean UpdateUser(Users user) {
+        try {
+            return repository.UpdateUser(user);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean UpdateReward(Rewards reward) {
+        try {
+            return repository.UpdateReward(reward);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean DeleteUser(int ID) {
+        try {
+            return repository.RemoveUser(ID);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean DeleteReward(int ID) {
+        try {
+            return repository.RemoveReward(ID);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean AddRewardToUser(int userID, int rewardID) {
+        try {
+            return repository.RewardUser(userID, rewardID);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean DeleteRewardFromUser(Integer userID, Integer rewardID) {
+        try {
+            return repository.DeleteRewardFromUser(userID, rewardID);
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public Users GetUserFromID(int userID) {
+        return repository.GetUserFromID(userID);
+    }
+    public Rewards GetRewardFromID(int rewardID) {
+        return repository.GetRewardFromID(rewardID);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ /*   private void setTableData() {
         mainView.getUserID().setCellValueFactory(new PropertyValueFactory<Users, Integer>("id"));
         mainView.getUserName().setCellValueFactory(new PropertyValueFactory<Users, String>("FirstName"));
         mainView.getUserSecondName().setCellValueFactory(new PropertyValueFactory<Users, String>("LastName"));
@@ -35,9 +123,9 @@ public class Controller {
         mainView.getRewardID().setCellValueFactory(new PropertyValueFactory<Rewards, Integer>("id"));
         mainView.getRewardTittle().setCellValueFactory(new PropertyValueFactory<Rewards, String>("Tittle"));
         mainView.getRewardDescription().setCellValueFactory(new PropertyValueFactory<Rewards, String>("Description"));
-        /*UserStrRewards.setCellValueFactory(new PropertyValueFactory<Users, String>("rewardsStrId"));*/
-        mainView.getUserTable().setItems(repository.getUsersRepository());
-        mainView.getRewardTable().setItems(repository.getRewardsRepository());
+        UserStrRewards.setCellValueFactory(new PropertyValueFactory<Users, String>("rewardsStrId"));
+      /*  mainView.getUserTable().setItems(repository.getUsersRepository());*/
+     /*   mainView.getRewardTable().setItems(repository.getRewardsRepository());
     }
 
     public void setView() {
@@ -159,5 +247,5 @@ public class Controller {
         });
         setTableData();
         mainView.startForm();
-    }
+    }*/
 }
