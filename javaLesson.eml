@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component inherit-compiler-output="true" jdk="17" jdk_type="JavaSDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$"/>
+	<levels>
+		<level name="lib" value="project"/>
+		<level name="httpclient5-5.1" value="project"/>
+		<level name="jaxb-api-2.4.0-b180830.0359" value="project"/>
+	</levels>
+</component>
